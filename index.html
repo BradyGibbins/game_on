@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html data-ng-app="gameOn">
+	<head>
+		<title>Game On! Trustworthy game reviews.</title>
+		<link type="text/css" rel="stylesheet" href="app/css/default.css">
+		<link type="text/css" rel="stylesheet" href="app/libs/bootstrap-3.3.6/css/bootstrap.min.css">
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1" />
+	</head>
+	<body>
+		
+		<nav class="main-header" data-ng-controller="headerCtrl">
+			<!-- logo and header text -->
+			<div class="logo-img">
+				<a href="#/">
+					<img src="app/img/logo.png" alt="game on logo" />
+				</a>
+			</div>
+			<div class="logo-text">
+				<a href="#/">
+					<h1>Game On</h1>
+				</a>
+			</div>
+			
+			<!-- main menu for large devices -->
+			<div class="main-menu-lg">
+				<a href="#/">Home</a>
+				<a href="#" id="platforms-nav">Platforms</a>
+				<a href="#" id="search-nav">Search</a>
+			</div>
+
+			<!-- login/registration menu for large devices -->
+			<div class="login-register-lg">
+				<a href="#login-modal" data-toggle="modal">login</a>
+				<a href="#register-modal" data-toggle="modal">register</a>
+			</div>
+
+			<div class="main-menu-sm"></div>
+			
+			<!-- login modal -->
+			<div class="modal fade" id="login-modal" role="dialog">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" >&times;</button>
+							<h4 class="modal-title">login</h4>
+						</div>
+						<div class="modal-body">
+							<div class="form-group">
+								<label for="login-username">username:</label>
+								<input type="text" id="login-username" class="form-control login-username" />
+								
+								<label for="login-password">password:</label>
+								<input type="password" id="login-password" class="form-control login-password" />
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">submit</button>
+							<button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- registration modal -->
+			<div class="modal fade" id="register-modal" role="dialog">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title">register</h4>
+						</div>
+						<div class="modal-body">
+							<div class="form-group">
+								<label for="register-username">username:</label>
+								<input type="text" id="register-username" class="form-control register-username" />
+								
+								<label for="register-password">password:</label>
+								<input type="password" id="register-password" class="form-control register-password" />
+								
+								<label for="register-password-confirm">confirm password:</label>
+								<input type="password" id="register-password-confirm" class="form-control register-password-confirm" />
+								
+								<label for="register-email">email address:</label>
+								<input type="text" id="register-email" class="form-control register-" />
+								
+								<label for="register-fname">first name:</label>
+								<input type="text" id="register-fname" class="form-control register-" />
+								
+								<label for="register-lname">last name:</label>
+								<input type="text" id="register-lname" class="form-control register-" />
+								
+								<label for="register-image">user image:</label>
+								<input type="file" id="register-image" class="btn btn-default btn-file form-control register-" />
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">submit</button>
+							<button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</nav>
+
+
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<script type="text/javascript"> window.jQuery || document.write('<script type="text/javascript" src="app/libs/jquery-1.12.4/jquery.min.js"><\/script>');</script>
+		<script type="text/javascript" src="app/libs/bootstrap-3.3.6/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.js"></script>
+		<script type="text/javascript">window.angular || document.write('<script type="text/javascript" src="app/libs/angularjs-1.5.7/angular.min.js"><\/script>');</script>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-route.min.js
+"></script>
+		<script type="text/javascript">window.angular || document.write('<script type="text/javascript" src="app/libs/angularjs-1.5.7/angular-route.min.js"><\/script>');</script>
+
+		<script type="text/javascript" src="app/app.js"></script>
+		<script type="text/javascript" src="app/routes.js"></script>
+		<script type="text/javascript" src="app/controllers/headerCtrl.js"></script>
+
+	</body>
+</html>

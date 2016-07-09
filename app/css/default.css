@@ -1,0 +1,59 @@
+.main-header {
+  height: 60px;
+  background: #3d3d3d;
+  font-family: 'Open Sans', sans-serif; }
+  .main-header .logo-img {
+    height: 60px;
+    float: left; }
+    .main-header .logo-img a {
+      width: auto;
+      height: 60px; }
+      .main-header .logo-img a img {
+        height: 50px;
+        margin-top: 5px;
+        margin-left: 5px; }
+  .main-header .logo-text {
+    width: auto;
+    height: 60px;
+    float: left;
+    margin-left: 5px; }
+    .main-header .logo-text a {
+      text-decoration: none; }
+      .main-header .logo-text a h1 {
+        margin: 0;
+        font-size: 2em;
+        color: #efefef;
+        line-height: 58px; }
+  .main-header .main-menu-lg {
+    float: left;
+    width: 300px;
+    height: 60px;
+    margin-left: 10px; }
+    .main-header .main-menu-lg a {
+      display: inline-block;
+      width: 100px;
+      height: 60px;
+      line-height: 60px;
+      margin: 0 -2px;
+      text-decoration: none;
+      color: #efefef;
+      text-align: center; }
+  .main-header .login-register-lg {
+    float: right;
+    width: 200px;
+    height: 60px; }
+    .main-header .login-register-lg a {
+      display: inline-block;
+      width: 100px;
+      height: 60px;
+      line-height: 60px;
+      margin: 0 -2px;
+      text-decoration: none;
+      color: #efefef;
+      text-align: center; }
+
+body {
+  background-image: url("/game_on/app/img/cubebg.png") !important;
+  background-repeat: repeat; }
+
+/*# sourceMappingURL=default.css.map */
