@@ -1,0 +1,11 @@
+<div class="row platforms-title">
+	<div class="col-xs-12">
+		<h1>Platforms</h1>
+	</div>
+</div>
+
+<div class="row platforms-list">
+	<a class="col-sm-6" data-ng-repeat="platform in platforms" data-ng-href="/platforms/{{ platform.platform_id }}" style="background:url('app/img/platforms/{{platform.platform_img}}')" ng-cloak>
+		<h2>{{ platform.platform_name }}</h2>
+	</a>
+</div>

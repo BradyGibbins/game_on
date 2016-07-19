@@ -1,0 +1,38 @@
+.platforms-title{
+	height:80px;
+	// background: $go-hexagons;
+	border-bottom:4px solid $go-yellow;
+	margin-top: 50px;
+	margin-bottom:50px;
+}
+
+.platforms-list{
+	a{
+		height:200px;
+		overflow:hidden;
+		margin:20px 0;
+		color:$go-light;
+		text-shadow:0 0 2px black;
+		text-decoration: none;
+		background-size: contain;
+		background-position: center;
+		background-repeat: no-repeat;
+		border:2px solid $go-yellow;
+
+		&:hover h2{
+			color: $go-light;
+		}
+
+
+		img{
+			width:100%;
+			height:auto;
+		}
+
+		h2{
+			margin:0;
+			background: $go-dark;
+			border-bottom:2px solid $go-yellow;
+		}
+	}
+}

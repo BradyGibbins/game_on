@@ -24,6 +24,8 @@
         font-size: 2em;
         color: #efefef;
         line-height: 58px; }
+  .main-header .active-item {
+    background: #666666; }
   .main-header .main-menu-lg {
     float: left;
     width: 300px;
@@ -38,6 +40,32 @@
       text-decoration: none;
       color: #efefef;
       text-align: center; }
+      .main-header .main-menu-lg a .down-arrow {
+        width: 10px;
+        height: 5px;
+        display: inline-block;
+        background-image: url("../img/down-arrow.png");
+        background-repeat: no-repeat;
+        background-size: contain; }
+  .main-header .platform-list-lg {
+    display: inline-block;
+    width: 200px;
+    height: auto;
+    margin-left: -255px;
+    margin-top: 60px;
+    position: absolute;
+    z-index: 10; }
+    .main-header .platform-list-lg a {
+      display: block;
+      width: 200px;
+      height: 60px;
+      background: #3d3d3d;
+      color: #efefef;
+      text-align: center;
+      line-height: 60px;
+      text-decoration: none; }
+      .main-header .platform-list-lg a:hover {
+        background: #666666; }
   .main-header .login-register-lg {
     float: right;
     width: 200px;
@@ -51,9 +79,127 @@
       text-decoration: none;
       color: #efefef;
       text-align: center; }
+  .main-header .show-hide-menu-sm {
+    width: 50px;
+    height: 50px;
+    margin-top: 5px;
+    padding-top: 5px;
+    float: right; }
+    .main-header .show-hide-menu-sm.active {
+      background: #666666; }
+    .main-header .show-hide-menu-sm .menu-line {
+      width: 30px;
+      height: 10px;
+      margin: 0 auto;
+      border-bottom: 2px solid #efefef; }
+  .main-header .main-menu-sm {
+    width: 100%;
+    height: auto;
+    display: block;
+    float: left; }
+    .main-header .main-menu-sm .platform-list-sm {
+      display: inline-block;
+      width: 100%;
+      height: auto;
+      float: left; }
+      .main-header .main-menu-sm .platform-list-sm a {
+        display: inline-block;
+        width: 100%;
+        height: 60px;
+        background: #3d3d3d;
+        color: #efefef;
+        text-align: center;
+        line-height: 60px;
+        text-decoration: none; }
+        .main-header .main-menu-sm .platform-list-sm a:hover {
+          background: #666666; }
+    .main-header .main-menu-sm a {
+      display: inline-block;
+      width: 100%;
+      height: 60px;
+      text-align: center;
+      line-height: 60px;
+      color: #efefef;
+      background: #3d3d3d;
+      text-decoration: none; }
+      .main-header .main-menu-sm a:hover {
+        background: #666666; }
+      .main-header .main-menu-sm a .down-arrow {
+        width: 10px;
+        height: 5px;
+        display: inline-block;
+        background-image: url("../img/down-arrow.png");
+        background-repeat: no-repeat;
+        background-size: contain; }
 
 body {
-  background-image: url("/game_on/app/img/cubebg.png") !important;
+  background-image: url("/game_on/app/img/cubebg.png");
   background-repeat: repeat; }
+
+.platforms-title {
+  height: 80px;
+  border-bottom: 4px solid #ffe400;
+  margin-top: 50px;
+  margin-bottom: 50px; }
+
+.platforms-list a {
+  height: 200px;
+  overflow: hidden;
+  margin: 20px 0;
+  color: #efefef;
+  text-shadow: 0 0 2px black;
+  text-decoration: none;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 2px solid #ffe400; }
+  .platforms-list a:hover h2 {
+    color: #efefef; }
+  .platforms-list a img {
+    width: 100%;
+    height: auto; }
+  .platforms-list a h2 {
+    margin: 0;
+    background: #3d3d3d;
+    border-bottom: 2px solid #ffe400; }
+
+@media screen and (max-width: 767px) {
+  .main-header .main-menu-lg {
+    display: none; }
+  .main-header .login-register-lg {
+    display: none; }
+  .main-header .show-hide-menu-sm {
+    display: inline-block; }
+  .main-header .main-menu-sm {
+    display: block; }
+  .main-header .platform-list-lg {
+    display: none; } }
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  .main-header .main-menu-lg {
+    display: inline-block; }
+  .main-header .login-register-lg {
+    display: inline-block; }
+  .main-header .show-hide-menu-sm {
+    display: none; }
+  .main-header .main-menu-sm {
+    display: none; } }
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+  .main-header .main-menu-lg {
+    display: inline-block; }
+  .main-header .login-register-lg {
+    display: inline-block; }
+  .main-header .show-hide-menu-sm {
+    display: none; }
+  .main-header .main-menu-sm {
+    display: none; } }
+@media screen and (min-width: 1200px) {
+  .main-header .main-menu-lg {
+    display: inline-block; }
+  .main-header .login-register-lg {
+    display: inline-block; }
+  .main-header .show-hide-menu-sm {
+    display: none; }
+  .main-header .main-menu-sm {
+    display: none; } }
 
 /*# sourceMappingURL=default.css.map */

@@ -2,7 +2,15 @@ app.config(function($routeProvider){
 	$routeProvider
 
 	.when('/', {
-		templateUrl:'app/components/home/homeView.html',
-		controller:'app/components/home/homeCtrl.js'
+		templateUrl:'app/views/homeView.html',
+		controller:'homeCtrl'
+	})
+	.when('/platforms', {
+		templateUrl:'app/views/platformsView.html',
+		controller:'platformsCtrl'
+	})
+	.when('/platforms/:id', {
+		templateUrl:'app/views/platformsView.html',
+		controller:'platformCtrl'
 	});
 });

@@ -1,19 +1,87 @@
 // phones nad small tablets
 @media screen and (max-width:767px){
+	.main-header{
+		.main-menu-lg{
+			display:none;
+		}
 
+		.login-register-lg{
+			display: none;
+		}
+
+		.show-hide-menu-sm{
+			display: inline-block;
+		}	
+
+		.main-menu-sm{
+			display:block;
+		}
+
+		.platform-list-lg{
+			display: none;
+		}
+	}
 }
 
 // tablets
 @media screen and (min-width:768px) and (max-width:991px){
+	.main-header{
+		.main-menu-lg{
+			display:inline-block;
+		}
 
+		.login-register-lg{
+			display: inline-block;
+		}
+
+		.show-hide-menu-sm{
+			display: none;
+		}	
+
+		.main-menu-sm{
+			display:none;
+		}
+	}
 }
 
 // desktops
 @media screen and (min-width:992px) and (max-width:1199px){
+	.main-header{
+		.main-menu-lg{
+			display:inline-block;
+		}
 
+		.login-register-lg{
+			display: inline-block;
+		}
+
+		.show-hide-menu-sm{
+			display: none;
+		}	
+
+		.main-menu-sm{
+			display:none;
+		}
+	}
 }
 
 // large screens
 @media screen and (min-width:1200px){
-	
+	.main-header{
+		.main-menu-lg{
+			display:inline-block;
+		}
+
+		.login-register-lg{
+			display: inline-block;
+		}
+
+		.show-hide-menu-sm{
+			display: none;
+		}	
+
+		.main-menu-sm{
+			display:none;
+		}
+	}
 }
