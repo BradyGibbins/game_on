@@ -1,3 +1,162 @@
+html, body {
+  width: 100%;
+  height: 100%;
+  background-image: url("/game_on/app/img/cubebg.png");
+  background-repeat: repeat; }
+
+.wrapper {
+  min-height: 100%;
+  margin-bottom: -60px;
+  padding-bottom: 60px; }
+
+.main-cont {
+  min-height: 600px; }
+
+.page-title {
+  color: #efefef;
+  background: #3d3d3d;
+  border-bottom: 5px solid #ffe400;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: inline-block;
+  padding: 10px; }
+
+.review-listing {
+  height: 150px; }
+  .review-listing .review-img {
+    width: 50%;
+    height: 150px;
+    margin: 0;
+    border-top: 1px solid #3d3d3d;
+    border-bottom: 1px solid #3d3d3d;
+    border-left: 1px solid #3d3d3d;
+    display: block;
+    float: left; }
+    .review-listing .review-img h2 {
+      display: block;
+      width: 100%;
+      height: 100px;
+      padding-top: 5px;
+      padding-left: 5px;
+      text-align: left;
+      vertical-align: top;
+      margin: 0;
+      color: #efefef;
+      text-shadow: 0 0 2px black;
+      background: rgba(0, 0, 0, 0.4); }
+    .review-listing .review-img p {
+      display: block;
+      width: 100%;
+      height: 48px;
+      line-height: 70px;
+      padding-left: 5px;
+      background: rgba(0, 0, 0, 0.4);
+      color: #efefef;
+      margin: 0;
+      text-shadow: 0 0 2px black;
+      font-size: 1.2em; }
+  .review-listing .review-rating {
+    width: 120px;
+    height: 120px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto; }
+  .review-listing .review-text {
+    width: 50%;
+    height: 150px;
+    background: #3d3d3d;
+    float: right; }
+    .review-listing .review-text .review-clip {
+      width: 80%;
+      height: 120px;
+      padding: 5px;
+      margin-top: 10px;
+      margin-right: 5px;
+      color: #efefef;
+      float: right;
+      text-align: justify;
+      overflow: hidden; }
+
+footer {
+  display: block;
+  width: 100%;
+  height: 60px;
+  text-align: center;
+  line-height: 60px;
+  font-family: 'Open Sans', sans-serif;
+  background: #3d3d3d;
+  color: #efefef; }
+
+.back-btn {
+  padding: 10px;
+  border: 1px solid #3d3d3d;
+  background: #ffe400;
+  color: #3d3d3d;
+  text-decoration: none;
+  font-family: 'Open Sans', sans-serif;
+  display: block;
+  text-align: center; }
+  .back-btn:hover {
+    text-decoration: none;
+    background: #e8cf00; }
+
+.form-header {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  margin: 0; }
+
+.exit-btn {
+  position: absolute;
+  top: -45px;
+  right: -15px;
+  width: 30px;
+  height: 30px;
+  font-size: 1.8em;
+  display: block;
+  text-decoration: none;
+  text-align: center;
+  line-height: 0;
+  color: #3d3d3d;
+  border: none;
+  background: #efefef; }
+  .exit-btn:hover {
+    background: #3d3d3d;
+    color: #efefef;
+    text-decoration: none;
+    text-shadow: 0px 0px 4px #efefef; }
+
+.fieldError {
+  margin: 0;
+  padding: 0;
+  color: #ff5757;
+  display: inline; }
+
+.cancel-btn,
+.submit-btn {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  bottom: 10px;
+  width: 100px;
+  height: 40px; }
+
+.cancel-btn {
+  right: 150px;
+  background: #f83f14;
+  color: #efefef;
+  border: none; }
+
+.submit-btn {
+  left: 150px;
+  background: #0894c2;
+  color: #efefef;
+  border: none; }
+
 .main-header {
   height: 60px;
   background: #3d3d3d;
@@ -66,6 +225,33 @@
       text-decoration: none; }
       .main-header .platform-list-lg a:hover {
         background: #666666; }
+  .main-header .search-container-lg {
+    position: absolute;
+    width: 500px;
+    height: 40px;
+    background: #3d3d3d;
+    margin-top: 60px;
+    margin-left: 250px;
+    z-index: 10; }
+    .main-header .search-container-lg .search-lg {
+      display: inline-block;
+      width: 400px;
+      height: 30px;
+      margin-left: 10px;
+      margin-top: 5px;
+      padding-left: 5px; }
+    .main-header .search-container-lg .search-btn-lg {
+      position: absolute;
+      top: 5px;
+      width: 80px;
+      height: 30px;
+      background: #efefef;
+      border: 1px solid #3d3d3d;
+      border-left: none;
+      text-decoration: none;
+      color: #3d3d3d;
+      text-align: center;
+      line-height: 30px; }
   .main-header .login-register-lg {
     float: right;
     width: 200px;
@@ -113,6 +299,33 @@
         text-decoration: none; }
         .main-header .main-menu-sm .platform-list-sm a:hover {
           background: #666666; }
+    .main-header .main-menu-sm .search-container-sm {
+      display: inline-block;
+      position: relative;
+      width: 100%;
+      height: 60px;
+      background: #3d3d3d; }
+      .main-header .main-menu-sm .search-container-sm .search-sm {
+        display: inline-block;
+        width: 70%;
+        height: 50px;
+        margin-top: 5px;
+        margin-left: 10px;
+        padding-left: 5px;
+        padding-right: 10px; }
+      .main-header .main-menu-sm .search-container-sm .search-btn-sm {
+        position: absolute;
+        top: 4px;
+        right: 10px;
+        width: 28%;
+        height: 50px;
+        border: 1px solid #3d3d3d;
+        margin-top: 1px;
+        margin-left: -5px;
+        background: #efefef;
+        color: #3d3d3d;
+        text-align: center;
+        line-height: 50px; }
     .main-header .main-menu-sm a {
       display: inline-block;
       width: 100%;
@@ -131,37 +344,94 @@
         background-image: url("../img/down-arrow.png");
         background-repeat: no-repeat;
         background-size: contain; }
-
-body {
-  background-image: url("/game_on/app/img/cubebg.png");
-  background-repeat: repeat; }
-
-.platforms-title {
-  height: 80px;
-  border-bottom: 4px solid #ffe400;
-  margin-top: 50px;
-  margin-bottom: 50px; }
-
-.platforms-list a {
-  height: 200px;
-  overflow: hidden;
-  margin: 20px 0;
-  color: #efefef;
-  text-shadow: 0 0 2px black;
-  text-decoration: none;
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-  border: 2px solid #ffe400; }
-  .platforms-list a:hover h2 {
-    color: #efefef; }
-  .platforms-list a img {
+  .main-header .login-modal {
+    position: fixed;
+    top: 80px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 400px;
+    height: 280px;
+    background: #efefef;
+    border: 2px solid #3d3d3d;
+    z-index: 20; }
+    .main-header .login-modal .login-form {
+      position: absolute;
+      left: 0;
+      right: 0;
+      margin: auto;
+      top: 50px;
+      width: 90%;
+      height: 220px; }
+  .main-header .register-modal {
+    position: fixed;
+    top: 50px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 400px;
+    height: 650px;
+    background: #efefef;
+    border: 2px solid #3d3d3d;
+    z-index: 20; }
+    .main-header .register-modal .register-form {
+      position: absolute;
+      top: 50px;
+      left: 0;
+      right: 0;
+      margin: auto;
+      width: 90%;
+      height: 580px; }
+  .main-header .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: auto; }
-  .platforms-list a h2 {
-    margin: 0;
-    background: #3d3d3d;
-    border-bottom: 2px solid #ffe400; }
+    height: 100%;
+    min-height: 720px;
+    background: black;
+    opacity: 0.4;
+    z-index: 19; }
+  .main-header .loading-overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: #efefef;
+    z-index: 9001; }
+    .main-header .loading-overlay img {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto; }
+
+.platforms-list div {
+  margin: 20px 0;
+  height: 200px; }
+  .platforms-list div a {
+    width: 90%;
+    height: 100%;
+    display: block;
+    margin: auto;
+    color: #efefef;
+    text-shadow: 0 0 2px black;
+    text-decoration: none; }
+    .platforms-list div a:hover h2 {
+      color: #efefef; }
+    .platforms-list div a img {
+      width: 100%;
+      height: auto; }
+    .platforms-list div a h2 {
+      margin: 0;
+      padding: 5px;
+      background: #3d3d3d;
+      border-bottom: 2px solid #ffe400; }
+
+.platform-title a {
+  display: inline-block;
+  float: right;
+  margin-top: 30px; }
 
 @media screen and (max-width: 767px) {
   .main-header .main-menu-lg {
@@ -173,6 +443,8 @@ body {
   .main-header .main-menu-sm {
     display: block; }
   .main-header .platform-list-lg {
+    display: none; }
+  .main-header .search-container-lg {
     display: none; } }
 @media screen and (min-width: 768px) and (max-width: 991px) {
   .main-header .main-menu-lg {

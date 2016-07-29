@@ -44,12 +44,15 @@ function userExists($username){
 function userAuth($username, $password){
 
 	if(userExists($username)){
+		$userDetails = query('SELECT * FROM users WHERE username = "'.$username.'"');
+		$userDetails = mysqli_fetch_assoc($userDetails);
 		$dbPass = $userDetails['user_password'];
 
 		if(password_verify($password, $dbPass)){
-			$userDetails = query('SELECT * FROM users WHERE username = "'.$username.'"');
-			$userDetails = mysqli_fetch_assoc($userDetails);
 			return json_encode($userDetails);
+		}
+		else{
+			return false;
 		}
 	}
 	else{
@@ -57,6 +60,20 @@ function userAuth($username, $password){
 	}
 
 }
+
+// retrieves a user's information from the database
+function userInfo($userID){
+	$userInfo = 'SELECT * FROM users
+				 WHERE user_id = '.$userID;
+	$userInfo = query($userInfo);
+	if(!$userInfo){
+		return false;
+	}
+	else{
+		return json_encode(mysqli_fetch_assoc($userInfo));
+	}
+}
+
 
 // return details for a given platform
 function platformDetails($platformID){
@@ -93,7 +110,7 @@ function listPlatforms(){
 
 // lists all reviews containing a searched string
 function searchResults($search){
-	$searchQuery = 'SELECT * FROM reviews
+	$searchQuery = 'SELECT *, DATE(review_time) AS "review_date" FROM reviews
 					INNER JOIN users
 					ON reviews.user_id = users.user_id
 					WHERE review_title LIKE "%'.$search.'%"
@@ -117,7 +134,7 @@ function searchResults($search){
 // returns an array of most recent review objects
 // default array length is 5
 function latestReviews($numReviews = 5){
-	$reviewQuery = 'SELECT * FROM reviews
+	$reviewQuery = 'SELECT *, DATE(review_time) AS "review_date" FROM reviews
 					INNER JOIN users
 					ON reviews.user_id = users.user_id
 					ORDER BY review_time DESC
@@ -142,7 +159,7 @@ function latestReviews($numReviews = 5){
 // returns an array of most recent review objects for a given platform
 // default array length is 5 
 function latestPlatformReviews($platformID, $numReviews = 5){
-	$reviewQuery = 'SELECT * FROM reviews
+	$reviewQuery = 'SELECT *, DATE(review_time) AS "review_date" FROM reviews
 					INNER JOIN users
 					ON reviews.user_id = users.user_id
 					WHERE platform_id = '.$platformID.'
@@ -166,7 +183,7 @@ function latestPlatformReviews($platformID, $numReviews = 5){
 
 // returns an array of all review objects for a given platform
 function allPlatformReviews($platformID){
-	$reviewQuery = 'SELECT * FROM reviews
+	$reviewQuery = 'SELECT *, DATE(review_time) AS "review_date" FROM reviews
 					INNER JOIN users
 					ON reviews.user_id = users.user_id
 					WHERE platform_id = '.$platformID.'
@@ -190,7 +207,7 @@ function allPlatformReviews($platformID){
 
 // retrieve a review's information from the database
 function reviewDetails($reviewID){
-	$reviewDetails = 'SELECT * FROM reviews
+	$reviewDetails = 'SELECT *, DATE(review_time) AS "review_date" FROM reviews
 					  INNER JOIN platforms
 					  ON reviews.platform_id = platforms.platform_id
 					  INNER JOIN users
@@ -231,17 +248,5 @@ function reviewComments($reviewID){
 
 }
 
-// retrieves a user's information from the database
-function userInfo($userID){
-	$userInfo = 'SELECT * FROM users
-				 WHERE user_id = '.$userID;
-	$userInfo = query($userInfo);
-	if(!$userInfo){
-		return false;
-	}
-	else{
-		return json_encode(mysqli_fetch_assoc($userInfo));
-	}
-}
 
 ?>

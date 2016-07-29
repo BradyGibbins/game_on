@@ -4,9 +4,10 @@ session_start();
 include 'functions.php';
 
 // user login
-if(isset($_POST['username']) && isset($_POST['user-pass'])){
-	if(userAuth($_POST['username'], $_POST['user-pass'])){
-		$userDetails = json_decode(userAuth($_POST['username'], $_POST['user-pass']), true);
+if(isset($_POST['loginUsername']) && isset($_POST['loginPassword'])){
+
+	if(userAuth($_POST['loginUsername'], $_POST['loginPassword'])){
+		$userDetails = json_decode(userAuth($_POST['loginUsername'], $_POST['loginPassword']), true);
 
 		$_SESSION['id'] = $userDetails['user_id'];
 		echo userInfo($_SESSION['id']);
@@ -15,6 +16,7 @@ if(isset($_POST['username']) && isset($_POST['user-pass'])){
 		echo '{"error":"invalid credentials"}';
 	}
 }
+
 
 // user logout
 if(isset($_GET['logout'])){
@@ -28,6 +30,7 @@ if(isset($_GET['list-platforms'])){
 	echo listPlatforms();
 }
 
+// get platform details
 if(isset($_GET['platform-id'])){
 	if(!platformDetails($_GET['platform-id'])){
 		echo '{"error":"invalid platform id"}';
@@ -47,4 +50,14 @@ if(isset($_GET['q'])){
 	}
 }
 
+
+// list all reviews for a platform
+if(isset($_GET['platform-reviews'])){
+	if(!allPlatformReviews($_GET['platform-reviews'])){
+		echo '{"error":"invalid platform id"}';
+	}
+	else{
+		echo allPlatformReviews($_GET['platform-reviews']);
+	}
+}
 ?>

@@ -1,0 +1,77 @@
+.back-btn{
+	padding:10px;
+	border:1px solid $go-dark;
+	background:$go-yellow;
+	color:$go-dark;
+	text-decoration: none;
+	font-family: 'Open Sans', sans-serif;
+	display: block;
+	text-align: center;
+
+	&:hover{
+		text-decoration: none;
+		background:$go-yellow / 1.1;
+	}
+}
+
+.form-header{
+	position: absolute;
+	top:5px;
+	left:5px;
+	margin:0;
+}
+
+.exit-btn{
+	position:absolute;
+	top:-45px;
+	right:-15px;
+	width:30px;
+	height:30px;
+	font-size:1.8em;
+	display:block;
+	text-decoration: none;
+	text-align: center;
+	line-height:0;
+	color:$go-dark;
+	border:none;
+	background: $go-light;
+
+	&:hover{
+		background: $go-dark;
+		color:$go-light;
+		text-decoration: none;
+		text-shadow:0px 0px 4px $go-light;
+	}
+}
+
+.fieldError{
+	margin:0;
+	padding:0;
+	color:rgb(255, 87, 87);
+	display:inline;
+}
+
+.cancel-btn,
+.submit-btn{
+	position:absolute;
+	left:0;
+	right:0;
+	margin:auto;
+	bottom:10px;
+	width:100px;
+	height:40px;
+}
+
+.cancel-btn{
+	right:150px;
+	background:rgb(248, 63, 20);
+	color:$go-light;
+	border:none;
+}
+
+.submit-btn{
+	left:150px;
+	background:rgb(8, 148, 194);
+	color:$go-light;
+	border:none;
+}

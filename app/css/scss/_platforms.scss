@@ -1,38 +1,44 @@
-.platforms-title{
-	height:80px;
-	// background: $go-hexagons;
-	border-bottom:4px solid $go-yellow;
-	margin-top: 50px;
-	margin-bottom:50px;
-}
-
 .platforms-list{
-	a{
-		height:200px;
-		overflow:hidden;
+	div{
 		margin:20px 0;
-		color:$go-light;
-		text-shadow:0 0 2px black;
-		text-decoration: none;
-		background-size: contain;
-		background-position: center;
-		background-repeat: no-repeat;
-		border:2px solid $go-yellow;
+		height:200px;
+		
+		a{
+			width:90%;
+			height:100%;
+			display: block;
+			margin:auto;
+			color:$go-light;
+			text-shadow:0 0 2px black;
+			text-decoration: none;
 
-		&:hover h2{
-			color: $go-light;
-		}
+			&:hover h2{
+				color: $go-light;
+			}
 
 
-		img{
-			width:100%;
-			height:auto;
-		}
+			img{
+				width:100%;
+				height:auto;
+			}
 
-		h2{
-			margin:0;
-			background: $go-dark;
-			border-bottom:2px solid $go-yellow;
+			h2{
+				margin:0;
+				padding:5px;
+				background: $go-dark;
+				border-bottom:2px solid $go-yellow;
+			}
 		}
 	}
 }
+
+
+// styles for single platform page
+.platform-title{
+	a{
+		display:inline-block;
+		float:right;
+		margin-top: 30px;
+	}
+}
+

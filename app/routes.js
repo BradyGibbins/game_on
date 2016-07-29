@@ -10,7 +10,7 @@ app.config(function($routeProvider){
 		controller:'platformsCtrl'
 	})
 	.when('/platforms/:id', {
-		templateUrl:'app/views/platformsView.html',
+		templateUrl:'app/views/platformView.html',
 		controller:'platformCtrl'
 	});
 });
