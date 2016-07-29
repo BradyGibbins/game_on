@@ -129,7 +129,7 @@ footer {
     text-decoration: none;
     text-shadow: 0px 0px 4px #efefef; }
 
-.fieldError {
+.form-error {
   margin: 0;
   padding: 0;
   color: #ff5757;
@@ -355,6 +355,10 @@ footer {
     background: #efefef;
     border: 2px solid #3d3d3d;
     z-index: 20; }
+    .main-header .login-modal .login-error {
+      position: absolute;
+      top: 10px;
+      left: 70px; }
     .main-header .login-modal .login-form {
       position: absolute;
       left: 0;

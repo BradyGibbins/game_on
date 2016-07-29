@@ -269,6 +269,12 @@
 		border:2px solid $go-dark;
 		z-index: 20;
 
+		.login-error{
+			position:absolute;
+			top:10px;
+			left:70px;
+		}
+
 		.login-form{
 			position:absolute;
 			left:0;
@@ -277,6 +283,7 @@
 			top:50px;
 			width:90%;
 			height:220px;
+
 		}
 	}
 

@@ -74,6 +74,16 @@ function userInfo($userID){
 	}
 }
 
+// gets session information
+function sessionActive(){
+	if(isset($_SESSION['id'])){
+		return json_encode($_SESSION);
+	}
+	else{
+		return false;
+	}
+}
+
 
 // return details for a given platform
 function platformDetails($platformID){

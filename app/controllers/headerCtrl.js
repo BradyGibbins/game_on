@@ -8,7 +8,12 @@ app.controller('headerCtrl', ['$scope', '$http', function($scope, $http){
  
 		});
 
-	// menu elements for large devices
+	
+
+
+	// MENU ELEMENTS FOR LARGE DEVICES
+
+	// show/hide platform list on large devices
 	$scope.hidePlatformsLg = 'hidden';
 	$scope.platformsShowHideLg = function(){
 		if($scope.hidePlatformsLg === 'hidden'){
@@ -19,6 +24,7 @@ app.controller('headerCtrl', ['$scope', '$http', function($scope, $http){
 		}
 	};
 
+	// show/hide search bar on large devices
 	$scope.hideSearchLg = 'hidden';
 	$scope.searchShowHideLg = function(){
 		if($scope.hideSearchLg === 'hidden'){
@@ -30,7 +36,13 @@ app.controller('headerCtrl', ['$scope', '$http', function($scope, $http){
 	};
 
 
-	// menu elements for small devices
+
+
+
+
+	// MENU ELEMENTS FOR SMALL DEVICES
+	
+	// show/hide platform list on small devices
 	$scope.hidePlatformsSm = 'hidden';
 	$scope.platformsShowHideSm = function(){
 		if($scope.hidePlatformsSm === 'hidden'){
@@ -41,6 +53,7 @@ app.controller('headerCtrl', ['$scope', '$http', function($scope, $http){
 		}
 	};
 
+	// show/hide search bar on small devices
 	$scope.hideSearchSm = 'hidden';
 	$scope.searchShowHideSm = function(){
 		if($scope.hideSearchSm === 'hidden'){
@@ -51,6 +64,7 @@ app.controller('headerCtrl', ['$scope', '$http', function($scope, $http){
 		}
 	};
 
+	// show/hide menu on small devices
 	$scope.menuSmActive = '';
 	$scope.hideMenuSm = 'hidden';
 	$scope.menuShowHideSm = function(){
@@ -64,11 +78,18 @@ app.controller('headerCtrl', ['$scope', '$http', function($scope, $http){
 		}
 	};
 
+	// show/hide both menu and platforms on small devices
 	$scope.menuPlatformsShowHideSm = function(){
 		$scope.platformsShowHideSm();
 		$scope.menuShowHideSm();
 	};
 
+
+
+
+
+
+	// DEVICE SIZE INDEPENDENT STUFF
 
 	// login and registration modals
 	$scope.hideModalOverlay = 'hidden';
@@ -84,6 +105,9 @@ app.controller('headerCtrl', ['$scope', '$http', function($scope, $http){
 			$scope.hideLoginModal = 'hidden';
 			$scope.usernameError = false;
 			$scope.passwordError = false;
+			$scope.submitError = false;
+			$scope.loginUsername = '';
+			$scope.loginPassword = '';
 		}
 	};
 
@@ -100,6 +124,17 @@ app.controller('headerCtrl', ['$scope', '$http', function($scope, $http){
 	};
 
 
+	// check session status
+	$http.get('/game_on/api/api.php?session-status')
+	.then(function success(response){
+		if(response.data.session === 'false'){
+			$scope.sessionActive = false;
+		}
+		else{
+			$scope.sessionActive = true;
+		}
+	});
+
 	// login processing
 	$scope.loginUsername = '';
 	$scope.loginPassword = '';
@@ -108,6 +143,7 @@ app.controller('headerCtrl', ['$scope', '$http', function($scope, $http){
 
 		$scope.usernameError = false;
 		$scope.passwordError = false;
+		$scope.submitError = false;
 
 
 		if($scope.loginUsername === ''){
@@ -120,25 +156,20 @@ app.controller('headerCtrl', ['$scope', '$http', function($scope, $http){
 		}
 		else{
 
-			// $scope.usernameError = false;
-			// $scope.passwordError = false;
-			// $scope.loginUsername = '';
-			// $scope.loginPassword = '';
-
-			// $scope.getURL = '/game_on/api/api.php?loginUsername='+$scope.loginUsername+'&loginPassword='+$scope.loginPassword;
-
-			
 			$http.post('/game_on/api/api.php', {
 				'loginUsername':$scope.loginUsername,
 				'loginPassword':$scope.loginPassword
-			},
-			{
-				headers:{
-					'Content-Type':'application/x-www-form-urlencoded'
-				}
 			})
 			.then(function success(response){
-				console.log(response);
+				$scope.loginResponse = response.data;
+
+				if($scope.loginResponse.error){
+					$scope.submitError = $scope.loginResponse.error;
+					return false;
+				}
+				else{
+					console.log($scope.loginResponse);
+				}
 			});
 		}
 
