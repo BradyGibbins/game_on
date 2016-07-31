@@ -131,8 +131,8 @@
 		}
 	}
 
-	// login and register buttons for large devices
-	.login-register-lg{
+	// login and register/profile and log out buttons for large devices
+	.login-logout-lg{
 		float:right;
 		width:200px;
 		height: 60px;
@@ -269,10 +269,18 @@
 		border:2px solid $go-dark;
 		z-index: 20;
 
+		.login-success{
+			position:absolute;
+			top:10px;
+			left:70px;
+			font-weight: bold;
+		}
+
 		.login-error{
 			position:absolute;
 			top:10px;
 			left:70px;
+			font-weight: bold;
 		}
 
 		.login-form{

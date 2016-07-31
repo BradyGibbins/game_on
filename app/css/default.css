@@ -129,6 +129,12 @@ footer {
     text-decoration: none;
     text-shadow: 0px 0px 4px #efefef; }
 
+.form-success {
+  margin: 0;
+  padding: 0;
+  color: #00c41c;
+  display: inline; }
+
 .form-error {
   margin: 0;
   padding: 0;
@@ -252,11 +258,11 @@ footer {
       color: #3d3d3d;
       text-align: center;
       line-height: 30px; }
-  .main-header .login-register-lg {
+  .main-header .login-logout-lg {
     float: right;
     width: 200px;
     height: 60px; }
-    .main-header .login-register-lg a {
+    .main-header .login-logout-lg a {
       display: inline-block;
       width: 100px;
       height: 60px;
@@ -355,10 +361,16 @@ footer {
     background: #efefef;
     border: 2px solid #3d3d3d;
     z-index: 20; }
+    .main-header .login-modal .login-success {
+      position: absolute;
+      top: 10px;
+      left: 70px;
+      font-weight: bold; }
     .main-header .login-modal .login-error {
       position: absolute;
       top: 10px;
-      left: 70px; }
+      left: 70px;
+      font-weight: bold; }
     .main-header .login-modal .login-form {
       position: absolute;
       left: 0;
@@ -440,7 +452,7 @@ footer {
 @media screen and (max-width: 767px) {
   .main-header .main-menu-lg {
     display: none; }
-  .main-header .login-register-lg {
+  .main-header .login-logout-lg {
     display: none; }
   .main-header .show-hide-menu-sm {
     display: inline-block; }
@@ -453,7 +465,7 @@ footer {
 @media screen and (min-width: 768px) and (max-width: 991px) {
   .main-header .main-menu-lg {
     display: inline-block; }
-  .main-header .login-register-lg {
+  .main-header .login-logout-lg {
     display: inline-block; }
   .main-header .show-hide-menu-sm {
     display: none; }
@@ -462,7 +474,7 @@ footer {
 @media screen and (min-width: 992px) and (max-width: 1199px) {
   .main-header .main-menu-lg {
     display: inline-block; }
-  .main-header .login-register-lg {
+  .main-header .login-logout-lg {
     display: inline-block; }
   .main-header .show-hide-menu-sm {
     display: none; }
@@ -471,7 +483,7 @@ footer {
 @media screen and (min-width: 1200px) {
   .main-header .main-menu-lg {
     display: inline-block; }
-  .main-header .login-register-lg {
+  .main-header .login-logout-lg {
     display: inline-block; }
   .main-header .show-hide-menu-sm {
     display: none; }

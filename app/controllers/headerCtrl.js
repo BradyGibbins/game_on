@@ -1,4 +1,4 @@
-app.controller('headerCtrl', ['$scope', '$http', function($scope, $http){
+app.controller('headerCtrl', ['$scope', '$http', '$timeout', function($scope, $http, $timeout){
 
 	// retrieve platform list from db
 	$http.get('/game_on/api/api.php?list-platforms')
@@ -84,6 +84,16 @@ app.controller('headerCtrl', ['$scope', '$http', function($scope, $http){
 		$scope.menuShowHideSm();
 	};
 
+	// hide menu and show login/registration modals on small devices
+	$scope.menuLoginShowHideSm = function(){
+		$scope.menuShowHideSm();
+		$scope.showHideLogin();
+	};
+
+	$scope.menuRegisterShowHideSm = function(){
+		$scope.menuShowHideSm();
+		$scope.showHideRegister();
+	};
 
 
 
@@ -106,6 +116,7 @@ app.controller('headerCtrl', ['$scope', '$http', function($scope, $http){
 			$scope.usernameError = false;
 			$scope.passwordError = false;
 			$scope.submitError = false;
+			$scope.loginSuccess = false;
 			$scope.loginUsername = '';
 			$scope.loginPassword = '';
 		}
@@ -144,6 +155,7 @@ app.controller('headerCtrl', ['$scope', '$http', function($scope, $http){
 		$scope.usernameError = false;
 		$scope.passwordError = false;
 		$scope.submitError = false;
+		$scope.loginSuccess = false;
 
 
 		if($scope.loginUsername === ''){
@@ -161,18 +173,41 @@ app.controller('headerCtrl', ['$scope', '$http', function($scope, $http){
 				'loginPassword':$scope.loginPassword
 			})
 			.then(function success(response){
-				$scope.loginResponse = response.data;
+				
+				var data = response.data;
 
-				if($scope.loginResponse.error){
-					$scope.submitError = $scope.loginResponse.error;
+				if(data.error){
+					$scope.submitError = data.error;
 					return false;
 				}
 				else{
-					console.log($scope.loginResponse);
+					$scope.userInfo = {
+						userID:data.user_id,
+						userType:data.user_type_id,
+						username:data.username,
+						email:data.user_email,
+						fname:data.user_fname,
+						lname:data.user_lname,
+						joinDate:data.user_join_date,
+						img:data.user_img
+					};
+
+					$scope.loginSuccess = 'login successful';
+
+					$timeout(function(){
+						$scope.showHideLogin();
+					}, 1000);
 				}
 			});
 		}
 
+	};
+
+	$scope.logout = function(){
+		$http.get('/game_on/api/api.php?logout')
+		.then(function success(){
+			$scope.sessionActive = false;
+		});
 	};
 
 

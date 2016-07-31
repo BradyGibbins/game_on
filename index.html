@@ -38,15 +38,16 @@
 					<a data-ng-repeat="platform in platformList" data-ng-href="#/platforms/{{platform.platform_id}}" data-ng-click="platformsShowHideLg()">{{ platform.platform_name }}</a>
 				</div>
 
-				<!-- login/registration menu for large devices -->
-				<div class="login-register-lg" ng-if="!sessionActive">
-					<a href="" data-toggle="modal" data-ng-click="showHideLogin()">login</a>
-					<a href="" data-toggle="modal" data-ng-click="showHideRegister()">register</a>
+				<div class="login-logout-lg" ng-if="!sessionActive">
+					<!-- login/registration menu for large devices -->
+					<a href="" data-ng-click="showHideLogin()">login</a>
+					<a href="" data-ng-click="showHideRegister()">register</a>
 				</div>
 
-				<div class="login-register-lg" ng-if="sessionActive">
-					<a href="" data-toggle="modal" data-ng-click="showHideLogin()">profile</a>
-					<a href="" data-toggle="modal" data-ng-click="showHideRegister()">log out</a>
+				<div class="login-logout-lg" ng-if="sessionActive">
+					<!-- profile info/log out menu for large devices -->
+					<a href="#/userprofile">profile</a>
+					<a href="" data-ng-click="logout()">log out</a>
 				</div>
 
 				<!-- menu show/hide button for small devices -->
@@ -68,13 +69,13 @@
 						<input type="text" class="search-sm" placeholder="enter your search term" />
 						<div class="search-btn-sm" data-ng-click="searchFunctionSm()">search</div>
 					</div>
-					<a href="" data-toggle="modal" data-ng-click="menuShowHideSm(); showHideLogin()">login</a>
-					<a href="" data-toggle="modal" data-ng-click="menuShowHideSm(); showHideRegister()">register</a>
+					<a href="" data-toggle="modal" data-ng-click="menuLoginShowHideSm()">login</a>
+					<a href="" data-toggle="modal" data-ng-click="menuRegisterShowHideSm()">register</a>
 				</div>
 
 				<!-- login modal -->
 				<div id="login-modal" class="login-modal" data-ng-class="hideLoginModal">
-					<h3 class="form-header">login</h3><p class="form-error login-error" data-ng-if="submitError">{{ " " + submitError }}</p>
+					<h3 class="form-header">login</h3><p class="form-error login-error" data-ng-if="submitError">{{ " " + submitError }}</p><p class="form-success login-success" data-ng-if="loginSuccess">{{ " " + loginSuccess }}</p>
 					<form role="form" class="login-form" data-ng-submit="processLogin()">
 						<button class="exit-btn" type="reset" data-ng-click="showHideLogin()">&times;</button>
 						<div class="form-group">
