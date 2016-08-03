@@ -22,6 +22,9 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && empty($_POST)){
 			echo '{"error":"invalid credentials"}';
 		}
 	}
+
+	// file upload
+	
 }
 
 // check if a session is active
@@ -40,6 +43,26 @@ if(isset($_GET['logout'])){
 	session_unset();
 	session_destroy();
 	session_start();
+}
+
+// get user info
+if(isset($_GET['user-info'])){
+	if(!userInfo($_GET['user-info'])){
+		echo '{"error":"invalid user id"}';
+	}
+	else{
+		echo userInfo($_GET['user-info']);
+	}
+}
+
+// check if a username exists
+if(isset($_GET['user-exists'])){
+	if(!userExists($_GET['user-exists'])){
+		echo 'false';
+	}
+	else{
+		echo 'true';
+	}
 }
 
 // list all platforms

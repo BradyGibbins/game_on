@@ -46,16 +46,62 @@
 
 .form-success{
 	margin:0;
-	padding:0;
-	color:rgb(0, 196, 28);
+	padding:5px;
+	background:rgb(0, 196, 28);
+	color:white;
 	display:inline;
 }
 
 .form-error{
 	margin:0;
-	padding:0;
-	color:rgb(255, 87, 87);
-	display:inline;
+	margin-left:2px;
+	margin-top:-40px;
+	padding:5px;
+	background:rgb(255, 87, 87);
+	color:white;
+	display:inline-block;
+	width:220px;
+	text-align: center;
+	-webkit-animation:errorShake 0.3s;
+	-moz-animation:errorShake 0.3s;
+	-o-animation:errorShake 0.3s;
+	-ms-animation:errorShake 0.3s;
+	animation:errorShake 0.3s;
+}
+
+@-webkit-keyframes errorShake{
+	25%{margin-left: 10px;}
+	50%{margin-left: 2px;}
+	75%{margin-left:10px}
+	100%{margin-left: 2px;}
+}
+
+@-moz-keyframes errorShake{
+	25%{margin-left: 10px;}
+	50%{margin-left: 2px;}
+	75%{margin-left:10px}
+	100%{margin-left: 2px;}
+}
+
+@-o-keyframes errorShake{
+	25%{margin-left: 10px;}
+	50%{margin-left: 2px;}
+	75%{margin-left:10px}
+	100%{margin-left: 2px;}
+}
+
+@-ms-keyframes errorShake{
+	25%{margin-left: 10px;}
+	50%{margin-left: 2px;}
+	75%{margin-left:10px}
+	100%{margin-left: 2px;}
+}
+
+@keyframes errorShake{
+	25%{margin-left: 10px;}
+	50%{margin-left: 2px;}
+	75%{margin-left:10px}
+	100%{margin-left: 2px;}
 }
 
 .cancel-btn,

@@ -29,12 +29,12 @@
 					<a href="" data-ng-click="platformsShowHideLg()">platforms <span class="down-arrow"></span></a>
 					<a href="" data-ng-click="searchShowHideLg()">search</a>
 				</div>
-				<div class="search-container-lg" data-ng-class="hideSearchLg">
+				<div class="search-container-lg" data-ng-if="!hideSearchLg">
 					<input type="text" class="search-lg" placeholder="enter your search term" />
 					<a href="" data-ng-click="searchFunctionLg()" class="search-btn-lg">search</a>
 				</div>
 
-				<div class="platform-list-lg" data-ng-class="hidePlatformsLg">
+				<div class="platform-list-lg" data-ng-if="!hidePlatformsLg">
 					<a data-ng-repeat="platform in platformList" data-ng-href="#/platforms/{{platform.platform_id}}" data-ng-click="platformsShowHideLg()">{{ platform.platform_name }}</a>
 				</div>
 
@@ -46,7 +46,7 @@
 
 				<div class="login-logout-lg" ng-if="sessionActive">
 					<!-- profile info/log out menu for large devices -->
-					<a href="#/userprofile">profile</a>
+					<a href="#/userprofile">{{ userInfo.username }}</a>
 					<a href="" data-ng-click="logout()">log out</a>
 				</div>
 
@@ -58,32 +58,38 @@
 				</a>
 
 				<!-- main menu for small devices -->
-				<div class="main-menu-sm" data-ng-class="hideMenuSm">
+				<div class="main-menu-sm" data-ng-if="!hideMenuSm">
 					<a href="#/" data-ng-click="menuShowHideSm()">home</a>
 					<a href="#" data-ng-click="platformsShowHideSm()">platforms <span class="down-arrow"></span></a>
-					<div class="platform-list-sm" data-ng-class="hidePlatformsSm">
+					<div class="platform-list-sm" data-ng-if="!hidePlatformsSm">
 						<a data-ng-repeat="platform in platformList" data-ng-href="#/platforms/{{platform.platform_id}}" data-ng-click="menuPlatformsShowHideSm()">{{ platform.platform_name }}</a>
 					</div>
 					<a href="#" data-ng-click="searchShowHideSm()">search</a>
-					<div class="search-container-sm" data-ng-class="hideSearchSm">
+					<div class="search-container-sm" data-ng-if="!hideSearchSm">
 						<input type="text" class="search-sm" placeholder="enter your search term" />
 						<div class="search-btn-sm" data-ng-click="searchFunctionSm()">search</div>
 					</div>
-					<a href="" data-toggle="modal" data-ng-click="menuLoginShowHideSm()">login</a>
-					<a href="" data-toggle="modal" data-ng-click="menuRegisterShowHideSm()">register</a>
+					<div class="login-logout-sm" data-ng-if="!sessionActive">
+						<a href="" data-toggle="modal" data-ng-click="menuLoginShowHideSm()">login</a>
+						<a href="" data-toggle="modal" data-ng-click="menuRegisterShowHideSm()">register</a>
+					</div>
+					<div class="login-logout-sm" data-ng-if="sessionActive">
+						<a href="#/userprofile">{{ userInfo.username }}</a>
+						<a href="" data-ng-click="logout()">log out</a>
+					</div>
 				</div>
 
 				<!-- login modal -->
-				<div id="login-modal" class="login-modal" data-ng-class="hideLoginModal">
-					<h3 class="form-header">login</h3><p class="form-error login-error" data-ng-if="submitError">{{ " " + submitError }}</p><p class="form-success login-success" data-ng-if="loginSuccess">{{ " " + loginSuccess }}</p>
+				<div id="login-modal" class="login-modal" data-ng-show="!hideLoginModal">
+					<h3 class="form-header">login</h3><p class="form-error login-error" data-ng-if="submitError">{{ submitError }}</p><p class="form-success login-success" data-ng-if="loginSuccess">{{ loginSuccess }}</p>
 					<form role="form" class="login-form" data-ng-submit="processLogin()">
 						<button class="exit-btn" type="reset" data-ng-click="showHideLogin()">&times;</button>
 						<div class="form-group">
-							<label for="login-username">username:</label><p class="form-error" data-ng-if="usernameError">{{ " " + usernameError }}</p>
-							<input id="login-username" type="text" class="login-username form-control" data-ng-model="loginUsername" auto-focus />
+							<label for="login-username">username:</label><p class="form-error" data-ng-if="loginUsernameError">{{ loginUsernameError }}</p>
+							<input id="login-username" type="text" class="login-username form-control" data-ng-model="loginUsername" />
 						</div>
 						<div class="form-group">
-							<label for="login-password">password:</label><p class="form-error" data-ng-if="passwordError">{{ " " + passwordError }}</p>
+							<label for="login-password">password:</label><p class="form-error" data-ng-if="loginPasswordError">{{ loginPasswordError }}</p>
 							<input id="login-password" type="password" class="login-password form-control" data-ng-model="loginPassword" />
 						</div>
 
@@ -93,37 +99,37 @@
 				</div>
 
 				<!-- registration modal -->
-				<div id="register-modal" class="register-modal" data-ng-class="hideRegisterModal">
+				<div id="register-modal" class="register-modal" data-ng-show="!hideRegisterModal">
 					<h3 class="form-header">register</h3>
-					<form role="form" class="register-form" enctype="multipart/form-data">
+					<form role="form" id="register-form" class="register-form" enctype="multipart/form-data" data-ng-submit="processReg()">
 						<button class="exit-btn" type="reset" data-ng-click="showHideRegister()">&times;</button>
 						<div class="form-group">
-							<label for="register-username">username:</label>
+							<label for="register-username">username:</label><p class="form-error" data-ng-if="registerUsernameError">{{ registerUsernameError }}</p>
 							<input id="register-username" type="text" class="register-username form-control" data-ng-model="registerUsername">
 						</div>
 						<div class="form-group">
-							<label for="register-password">password:</label>
-							<input id="register-password" type="password" class="register-password form-control" data-ng-model="registerPassword">
+							<label for="register-password">password:</label><p class="form-error" data-ng-if="registerPassError">{{ registerPassError }}</p>
+							<input id="register-password" type="password" class="register-password form-control" data-ng-model="registerPass">
 						</div>
 						<div class="form-group">
-							<label for="register-password-confirm">confirm password:</label>
-							<input id="register-password-confirm" type="password" class="register-password-confirm form-control" data-ng-model="registerPasswordConfirm">
+							<label for="register-password-confirm">confirm password:</label><p class="form-error" data-ng-if="registerPassConfError">{{ registerPassConfError }}</p>
+							<input id="register-password-confirm" type="password" class="register-password-confirm form-control" data-ng-model="registerPassConf">
 						</div>
 						<div class="form-group">
-							<label for="register-email">email:</label>
+							<label for="register-email">email:</label><p class="form-error" data-ng-if="registerEmailError">{{ registerEmailError }}</p>
 							<input id="register-email" type="text" class="register-email form-control" data-ng-model="registerEmail">
 						</div>
 						<div class="form-group">
-							<label for="register-fname">first name:</label>
+							<label for="register-fname">first name:</label><p class="form-error" data-ng-if="registerFNameError">{{ registerFNameError }}</p>
 							<input id="register-fname" type="text" class="register-fname form-control" data-ng-model="registerFName">
 						</div>
 						<div class="form-group">
-							<label for="register-lname">last name:</label>
+							<label for="register-lname">last name:</label><p class="form-error" data-ng-if="registerLNameError">{{ registerLNameError }}</p>
 							<input id="register-lname" type="text" class="register-lname form-control" data-ng-model="registerLName">
 						</div>
 						<div class="form-group">
-							<label for="register-img">profile image:</label>
-							<input id="register-img" type="file" class="register-img form-control" data-ng-model="registerImg">
+							<label for="register-img">profile image:</label><p class="form-error" data-ng-if="registerImgError">{{ registerImgError }}</p>
+							<input id="register-img" type="file" name="registerImg" class="register-img form-control">
 						</div>
 
 						<button class="cancel-btn" type="reset" data-ng-click="showHideRegister()">cancel</button>
@@ -132,11 +138,11 @@
 				</div>
 
 				<!-- modal overlay -->
-				<div class="modal-overlay" data-ng-class="hideModalOverlay">
+				<div class="modal-overlay" data-ng-if="!hideModalOverlay">
 				</div>
 
 				<!-- page loading overlay -->
-				<div class="loading-overlay" data-ng-class="hideLoadingOverlay">
+				<div class="loading-overlay" data-ng-if="!hideLoadingOverlay">
 					<img src="app/img/loading.png" alt="page is loading">
 				</div>
 			</nav>
@@ -152,9 +158,11 @@
 		</footer>
 
 
+
 		<!-- jQuery -->
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 		<script type="text/javascript"> window.jQuery || document.write('<script type="text/javascript" src="app/libs/jquery-1.12.4/jquery.min.js"><\/script>');</script>
+
 
 		<!-- Bootstrap -->
 		<script type="text/javascript" src="app/libs/bootstrap-3.3.6/js/bootstrap.min.js"></script>
@@ -185,6 +193,9 @@
 		<script type="text/javascript" src="app/directives/platformInfo.js"></script>
 		<script type="text/javascript" src="app/directives/bgImg.js"></script>
 		<script type="text/javascript" src="app/directives/reviewSummary.js"></script>
+
+		<!-- register image submission -->
+		<script type="text/javascript" src="/game_on/app/js/registerImg.js"></script>
 
 	</body>
 </html>

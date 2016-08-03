@@ -131,16 +131,72 @@ footer {
 
 .form-success {
   margin: 0;
-  padding: 0;
-  color: #00c41c;
+  padding: 5px;
+  background: #00c41c;
+  color: white;
   display: inline; }
 
 .form-error {
   margin: 0;
-  padding: 0;
-  color: #ff5757;
-  display: inline; }
+  margin-left: 2px;
+  margin-top: -40px;
+  padding: 5px;
+  background: #ff5757;
+  color: white;
+  display: inline-block;
+  width: 220px;
+  text-align: center;
+  -webkit-animation: errorShake 0.3s;
+  -moz-animation: errorShake 0.3s;
+  -o-animation: errorShake 0.3s;
+  -ms-animation: errorShake 0.3s;
+  animation: errorShake 0.3s; }
 
+@-webkit-keyframes errorShake {
+  25% {
+    margin-left: 10px; }
+  50% {
+    margin-left: 2px; }
+  75% {
+    margin-left: 10px; }
+  100% {
+    margin-left: 2px; } }
+@-moz-keyframes errorShake {
+  25% {
+    margin-left: 10px; }
+  50% {
+    margin-left: 2px; }
+  75% {
+    margin-left: 10px; }
+  100% {
+    margin-left: 2px; } }
+@-o-keyframes errorShake {
+  25% {
+    margin-left: 10px; }
+  50% {
+    margin-left: 2px; }
+  75% {
+    margin-left: 10px; }
+  100% {
+    margin-left: 2px; } }
+@-ms-keyframes errorShake {
+  25% {
+    margin-left: 10px; }
+  50% {
+    margin-left: 2px; }
+  75% {
+    margin-left: 10px; }
+  100% {
+    margin-left: 2px; } }
+@keyframes errorShake {
+  25% {
+    margin-left: 10px; }
+  50% {
+    margin-left: 2px; }
+  75% {
+    margin-left: 10px; }
+  100% {
+    margin-left: 2px; } }
 .cancel-btn,
 .submit-btn {
   position: absolute;
@@ -216,13 +272,18 @@ footer {
     display: inline-block;
     width: 200px;
     height: auto;
-    margin-left: -255px;
     margin-top: 60px;
+    margin-left: -255px;
     position: absolute;
-    z-index: 10; }
+    z-index: 10;
+    -webkit-animation: platformsLg 0.2s;
+    -moz-animation: platformsLg 0.2s;
+    -o-animation: platformsLg 0.2s;
+    -ms-animation: platformsLg 0.2s;
+    animation: platformsLg 0.2s; }
     .main-header .platform-list-lg a {
       display: block;
-      width: 200px;
+      width: 100%;
       height: 60px;
       background: #3d3d3d;
       color: #efefef;
@@ -231,6 +292,46 @@ footer {
       text-decoration: none; }
       .main-header .platform-list-lg a:hover {
         background: #666666; }
+@-webkit-keyframes platformsLg {
+  0% {
+    opacity: 0;
+    width: 180px;
+    margin-left: -245px; }
+  100% {
+    opacity: 1;
+    width: 200px; } }
+@-moz-keyframes platformsLg {
+  0% {
+    opacity: 0;
+    width: 180px;
+    margin-left: -245px; }
+  100% {
+    opacity: 1;
+    width: 200px; } }
+@-o-keyframes platformsLg {
+  0% {
+    opacity: 0;
+    width: 180px;
+    margin-left: -245px; }
+  100% {
+    opacity: 1;
+    width: 200px; } }
+@-ms-keyframes platformsLg {
+  0% {
+    opacity: 0;
+    width: 180px;
+    margin-left: -245px; }
+  100% {
+    opacity: 1;
+    width: 200px; } }
+@keyframes platformsLg {
+  0% {
+    opacity: 0;
+    width: 180px;
+    margin-left: -245px; }
+  100% {
+    opacity: 1;
+    width: 200px; } }
   .main-header .search-container-lg {
     position: absolute;
     width: 500px;
@@ -238,7 +339,12 @@ footer {
     background: #3d3d3d;
     margin-top: 60px;
     margin-left: 250px;
-    z-index: 10; }
+    z-index: 10;
+    -webkit-animation: searchLg 0.3s;
+    -moz-animation: searchLg 0.3s;
+    -o-animation: searchLg 0.3s;
+    -ms-animation: searchLg 0.3s;
+    animation: searchLg 0.3s; }
     .main-header .search-container-lg .search-lg {
       display: inline-block;
       width: 400px;
@@ -258,6 +364,31 @@ footer {
       color: #3d3d3d;
       text-align: center;
       line-height: 30px; }
+@-webkit-keyframes searchLg {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+@-moz-keyframes searchLg {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+@-o-keyframes searchLg {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+@-ms-keyframes searchLg {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+@keyframes searchLg {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
   .main-header .login-logout-lg {
     float: right;
     width: 200px;
@@ -351,16 +482,21 @@ footer {
         background-repeat: no-repeat;
         background-size: contain; }
   .main-header .login-modal {
-    position: fixed;
+    position: absolute;
     top: 80px;
     left: 0;
     right: 0;
-    margin: auto;
     width: 400px;
     height: 280px;
+    margin: auto;
     background: #efefef;
     border: 2px solid #3d3d3d;
-    z-index: 20; }
+    z-index: 20;
+    -webkit-animation: loginModal 0.3s;
+    -moz-animation: loginModal 0.3s;
+    -o-animation: loginModal 0.3s;
+    -ms-animation: loginModal 0.3s;
+    animation: loginModal 0.3s; }
     .main-header .login-modal .login-success {
       position: absolute;
       top: 10px;
@@ -368,7 +504,7 @@ footer {
       font-weight: bold; }
     .main-header .login-modal .login-error {
       position: absolute;
-      top: 10px;
+      top: 50px;
       left: 70px;
       font-weight: bold; }
     .main-header .login-modal .login-form {
@@ -379,8 +515,53 @@ footer {
       top: 50px;
       width: 90%;
       height: 220px; }
+@-webkit-keyframes loginModal {
+  0% {
+    width: 380px;
+    height: 260px;
+    opacity: 0; }
+  100% {
+    width: 400px;
+    height: 280px;
+    opacity: 1; } }
+@-moz-keyframes loginModal {
+  0% {
+    width: 380px;
+    height: 260px;
+    opacity: 0; }
+  100% {
+    width: 400px;
+    height: 280px;
+    opacity: 1; } }
+@-o-keyframes loginModal {
+  0% {
+    width: 380px;
+    height: 260px;
+    opacity: 0; }
+  100% {
+    width: 400px;
+    height: 280px;
+    opacity: 1; } }
+@-ms-keyframes loginModal {
+  0% {
+    width: 380px;
+    height: 260px;
+    opacity: 0; }
+  100% {
+    width: 400px;
+    height: 280px;
+    opacity: 1; } }
+@keyframes loginModal {
+  0% {
+    width: 380px;
+    height: 260px;
+    opacity: 0; }
+  100% {
+    width: 400px;
+    height: 280px;
+    opacity: 1; } }
   .main-header .register-modal {
-    position: fixed;
+    position: absolute;
     top: 50px;
     left: 0;
     right: 0;
@@ -389,7 +570,12 @@ footer {
     height: 650px;
     background: #efefef;
     border: 2px solid #3d3d3d;
-    z-index: 20; }
+    z-index: 20;
+    -webkit-animation: registerModal 0.3s;
+    -moz-animation: registerModal 0.3s;
+    -o-animation: registerModal 0.3s;
+    -ms-animation: registerModal 0.3s;
+    animation: registerModal 0.3s; }
     .main-header .register-modal .register-form {
       position: absolute;
       top: 50px;
@@ -398,6 +584,15 @@ footer {
       margin: auto;
       width: 90%;
       height: 580px; }
+@-webkit-keyframes registerModal {
+  0% {
+    width: 380px;
+    height: 630px;
+    opacity: 0; }
+  100% {
+    width: 400px;
+    height: 650px;
+    opacity: 1; } }
   .main-header .modal-overlay {
     position: fixed;
     top: 0;

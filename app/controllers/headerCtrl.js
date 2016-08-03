@@ -1,5 +1,34 @@
 app.controller('headerCtrl', ['$scope', '$http', '$timeout', function($scope, $http, $timeout){
 
+	// check session status
+	$http.get('/game_on/api/api.php?session-status')
+	.then(function success(response){
+		if(response.data.session === 'false'){
+			$scope.sessionActive = false;
+		}
+		else{
+			$scope.sessionActive = true;
+
+			var userID = response.data.id;
+
+			$http.get('/game_on/api/api.php?user-info='+userID)
+			.then(function success(response){
+				var data = response.data;
+
+				$scope.userInfo = {
+					userID:data.user_id,
+					userType:data.user_type_id,
+					username:data.username,
+					email:data.user_email,
+					fname:data.user_fname,
+					lname:data.user_lname,
+					joinDate:data.user_join_date,
+					img:data.user_img
+				};
+			});
+		}
+	});
+
 	// retrieve platform list from db
 	$http.get('/game_on/api/api.php?list-platforms')
 		.then(function success(response){
@@ -14,24 +43,24 @@ app.controller('headerCtrl', ['$scope', '$http', '$timeout', function($scope, $h
 	// MENU ELEMENTS FOR LARGE DEVICES
 
 	// show/hide platform list on large devices
-	$scope.hidePlatformsLg = 'hidden';
+	$scope.hidePlatformsLg = true;
 	$scope.platformsShowHideLg = function(){
-		if($scope.hidePlatformsLg === 'hidden'){
-			$scope.hidePlatformsLg = '';
+		if($scope.hidePlatformsLg){
+			$scope.hidePlatformsLg = false;
 		}
 		else{
-			$scope.hidePlatformsLg = 'hidden';
+			$scope.hidePlatformsLg = true;
 		}
 	};
 
 	// show/hide search bar on large devices
-	$scope.hideSearchLg = 'hidden';
+	$scope.hideSearchLg = true;
 	$scope.searchShowHideLg = function(){
-		if($scope.hideSearchLg === 'hidden'){
-			$scope.hideSearchLg = '';
+		if($scope.hideSearchLg){
+			$scope.hideSearchLg = false;
 		}
 		else{
-			$scope.hideSearchLg = 'hidden';
+			$scope.hideSearchLg = true;
 		}
 	};
 
@@ -43,37 +72,37 @@ app.controller('headerCtrl', ['$scope', '$http', '$timeout', function($scope, $h
 	// MENU ELEMENTS FOR SMALL DEVICES
 	
 	// show/hide platform list on small devices
-	$scope.hidePlatformsSm = 'hidden';
+	$scope.hidePlatformsSm = true;
 	$scope.platformsShowHideSm = function(){
-		if($scope.hidePlatformsSm === 'hidden'){
-			$scope.hidePlatformsSm = '';
+		if($scope.hidePlatformsSm){
+			$scope.hidePlatformsSm = false;
 		}
 		else{
-			$scope.hidePlatformsSm = 'hidden';
+			$scope.hidePlatformsSm = true;
 		}
 	};
 
 	// show/hide search bar on small devices
-	$scope.hideSearchSm = 'hidden';
+	$scope.hideSearchSm = true;
 	$scope.searchShowHideSm = function(){
-		if($scope.hideSearchSm === 'hidden'){
-			$scope.hideSearchSm = '';
+		if($scope.hideSearchSm){
+			$scope.hideSearchSm = false;
 		}
 		else{
-			$scope.hideSearchSm = 'hidden';
+			$scope.hideSearchSm = true;
 		}
 	};
 
 	// show/hide menu on small devices
 	$scope.menuSmActive = '';
-	$scope.hideMenuSm = 'hidden';
+	$scope.hideMenuSm = true;
 	$scope.menuShowHideSm = function(){
-		if($scope.hideMenuSm === 'hidden'){
-			$scope.hideMenuSm = '';
+		if($scope.hideMenuSm){
+			$scope.hideMenuSm = false;
 			$scope.menuSmActive = 'active';
 		}
 		else{
-			$scope.hideMenuSm = 'hidden';
+			$scope.hideMenuSm = true;
 			$scope.menuSmActive = '';
 		}
 	};
@@ -102,19 +131,19 @@ app.controller('headerCtrl', ['$scope', '$http', '$timeout', function($scope, $h
 	// DEVICE SIZE INDEPENDENT STUFF
 
 	// login and registration modals
-	$scope.hideModalOverlay = 'hidden';
+	$scope.hideModalOverlay = true;
 
-	$scope.hideLoginModal = 'hidden';
+	$scope.hideLoginModal = true;
 	$scope.showHideLogin = function(){
-		if($scope.hideLoginModal === 'hidden'){
-			$scope.hideModalOverlay = '';
-			$scope.hideLoginModal = '';
+		if($scope.hideLoginModal){
+			$scope.hideModalOverlay = false;
+			$scope.hideLoginModal = false;
 		}
 		else{
-			$scope.hideModalOverlay = 'hidden';
-			$scope.hideLoginModal = 'hidden';
-			$scope.usernameError = false;
-			$scope.passwordError = false;
+			$scope.hideModalOverlay = true;
+			$scope.hideLoginModal = true;
+			$scope.loginUsernameError = false;
+			$scope.loginPasswordError = false;
 			$scope.submitError = false;
 			$scope.loginSuccess = false;
 			$scope.loginUsername = '';
@@ -122,29 +151,18 @@ app.controller('headerCtrl', ['$scope', '$http', '$timeout', function($scope, $h
 		}
 	};
 
-	$scope.hideRegisterModal = 'hidden';
+	$scope.hideRegisterModal = true;
 	$scope.showHideRegister = function(){
-		if($scope.hideRegisterModal === 'hidden'){
-			$scope.hideModalOverlay = '';
-			$scope.hideRegisterModal = '';
+		if($scope.hideRegisterModal){
+			$scope.hideModalOverlay = false;
+			$scope.hideRegisterModal = false;
 		}
 		else{
-			$scope.hideModalOverlay = 'hidden';
-			$scope.hideRegisterModal = 'hidden';
+			$scope.hideModalOverlay = true;
+			$scope.hideRegisterModal = true;
 		}
 	};
 
-
-	// check session status
-	$http.get('/game_on/api/api.php?session-status')
-	.then(function success(response){
-		if(response.data.session === 'false'){
-			$scope.sessionActive = false;
-		}
-		else{
-			$scope.sessionActive = true;
-		}
-	});
 
 	// login processing
 	$scope.loginUsername = '';
@@ -152,25 +170,27 @@ app.controller('headerCtrl', ['$scope', '$http', '$timeout', function($scope, $h
 
 	$scope.processLogin = function(){
 
-		$scope.usernameError = false;
-		$scope.passwordError = false;
+		$scope.loginUsernameError = false;
+		$scope.loginPasswordError = false;
 		$scope.submitError = false;
 		$scope.loginSuccess = false;
 
+		// creates reference point for descendent scopes
+		var self = this;
 
-		if($scope.loginUsername === ''){
-			$scope.usernameError = 'please enter a username';
+		if(self.loginUsername === ''){
+			$scope.loginUsernameError = 'please enter a username';
 			return false;
 		}
-		else if($scope.loginPassword === ''){
-			$scope.passwordError = 'please enter a password';
+		else if(self.loginPassword === ''){
+			$scope.loginPasswordError = 'please enter a password';
 			return false;
 		}
 		else{
 
 			$http.post('/game_on/api/api.php', {
-				'loginUsername':$scope.loginUsername,
-				'loginPassword':$scope.loginPassword
+				'loginUsername':self.loginUsername,
+				'loginPassword':self.loginPassword
 			})
 			.then(function success(response){
 				
@@ -193,6 +213,7 @@ app.controller('headerCtrl', ['$scope', '$http', '$timeout', function($scope, $h
 					};
 
 					$scope.loginSuccess = 'login successful';
+					$scope.sessionActive = true;
 
 					$timeout(function(){
 						$scope.showHideLogin();
@@ -203,13 +224,107 @@ app.controller('headerCtrl', ['$scope', '$http', '$timeout', function($scope, $h
 
 	};
 
+
+	// logout user
 	$scope.logout = function(){
 		$http.get('/game_on/api/api.php?logout')
 		.then(function success(){
 			$scope.sessionActive = false;
+			$scope.userInfo = {};
 		});
 	};
 
 
-	$scope.hideLoadingOverlay = 'hidden';
+	// user registration procesing
+	$scope.registerUsername = '';
+	$scope.registerPass = '';
+	$scope.registerPassConf = '';
+	$scope.registerEmail = '';
+	$scope.registerFName = '';
+	$scope.registerLName = '';
+	$scope.registerImg = '';
+
+	$scope.processReg = function(){
+
+
+		$scope.registerUsernameError = false;
+		$scope.registerPassError = false;
+		$scope.registerPassConfError = false;
+		$scope.registerEmailError = false;
+		$scope.registerFNameError = false;
+		$scope.registerLNameError = false;
+		$scope.registerImgError = false;
+
+		// creates reference point for descendent scopes
+		var self = this;
+
+		// username registration validation
+		// check if username exists
+		$http.get('/game_on/api/api.php?user-exists='+self.registerUsername)
+		.then(function success(response){
+			
+			// password requirements
+			var hasUppercase = /[A-Z]/.test(self.registerPass);
+			var hasLowercase = /[a-z]/.test(self.registerPass);
+			var hasNumber = /\d/.test(self.registerPass);
+
+			// email address requirement
+			var validEmail = /^[\w]+@[\w]+\.([\w]{2,}|[\w]{2,3}\.[\w]{2})$/i.test(self.registerEmail);
+
+			// registration username validation
+			var userExists = response.data;
+			if(userExists === 'true'){
+				$scope.registerUsernameError = 'username already exists';
+				return false;
+			}
+			else if(self.registerUsername.length < 4 || self.registerUsername.length > 10){
+				$scope.registerUsernameError = 'must be between 4 and 10 characters';
+				return false;
+			}
+
+
+			// registration password validation
+			else if(self.registerPass.length < 7){
+				$scope.registerPassError = 'must contain at least 7 characters';
+				return false;
+			}
+			else if(!hasUppercase || !hasLowercase || !hasNumber){
+				$scope.registerPassError = 'must contain 1 lowercase letter, 1 uppercase letter and 1 number';
+				return false;
+			}
+
+
+			// registration password confirmation validation
+			else if(self.registerPass !== self.registerPassConf){
+				$scope.registerPassConfError = 'must match password';
+				return false;
+			}
+
+
+			// registration email address validation
+			else if(!validEmail){
+				$scope.registerEmailError = 'invalid email address';
+				return false;
+			}
+
+
+			// registration first name validation
+			else if(self.registerFName === ''){
+				$scope.registerFNameError = 'please enter a first name';
+				return false;
+			}
+
+
+			// registration first name validation
+			else if(self.registerLName === ''){
+				$scope.registerLNameError = 'please enter a last name';
+				return false;
+			}
+
+			
+
+		});
+	};
+
+	$scope.hideLoadingOverlay = true;
 }]);

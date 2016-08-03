@@ -76,14 +76,19 @@
 		display: inline-block;
 		width:200px;
 		height:auto;
-		margin-left:-255px;
 		margin-top: 60px;
+		margin-left:-255px;
 		position:absolute;
 		z-index:10;
+		-webkit-animation:platformsLg 0.2s;
+		-moz-animation:platformsLg 0.2s;
+		-o-animation:platformsLg 0.2s;
+		-ms-animation:platformsLg 0.2s;
+		animation:platformsLg 0.2s;
 
 		a{
 			display: block;
-			width:200px;
+			width:100%;
 			height:60px;
 			background:$go-dark;
 			color:$go-light;
@@ -94,6 +99,67 @@
 			&:hover{
 				background:$go-active;
 			}
+		}
+
+	}
+
+	@-webkit-keyframes platformsLg{
+		0%{
+			opacity:0;
+			width:180px;
+			margin-left:-245px;
+		}
+		100%{
+			opacity:1;
+			width:200px;
+		}
+	}
+
+	@-moz-keyframes platformsLg{
+		0%{
+			opacity:0;
+			width:180px;
+			margin-left:-245px;
+		}
+		100%{
+			opacity:1;
+			width:200px;
+		}
+	}
+
+	@-o-keyframes platformsLg{
+		0%{
+			opacity:0;
+			width:180px;
+			margin-left:-245px;
+		}
+		100%{
+			opacity:1;
+			width:200px;
+		}
+	}
+
+	@-ms-keyframes platformsLg{
+		0%{
+			opacity:0;
+			width:180px;
+			margin-left:-245px;
+		}
+		100%{
+			opacity:1;
+			width:200px;
+		}
+	}
+
+	@keyframes platformsLg{
+		0%{
+			opacity:0;
+			width:180px;
+			margin-left:-245px;
+		}
+		100%{
+			opacity:1;
+			width:200px;
 		}
 	}
 
@@ -106,6 +172,11 @@
 		margin-top:60px;
 		margin-left:250px;
 		z-index: 10;
+		-webkit-animation:searchLg 0.3s;
+		-moz-animation:searchLg 0.3s;
+		-o-animation:searchLg 0.3s;
+		-ms-animation:searchLg 0.3s;
+		animation:searchLg 0.3s;
 
 		.search-lg{
 			display:inline-block;
@@ -129,6 +200,31 @@
 			text-align: center;
 			line-height: 30px;
 		}
+	}
+
+	@-webkit-keyframes searchLg{
+		0%{opacity:0;}
+		100%{opacity:1}
+	}
+
+	@-moz-keyframes searchLg{
+		0%{opacity:0;}
+		100%{opacity:1}
+	}
+
+	@-o-keyframes searchLg{
+		0%{opacity:0;}
+		100%{opacity:1}
+	}
+
+	@-ms-keyframes searchLg{
+		0%{opacity:0;}
+		100%{opacity:1}
+	}
+
+	@keyframes searchLg{
+		0%{opacity:0;}
+		100%{opacity:1}
 	}
 
 	// login and register/profile and log out buttons for large devices
@@ -258,16 +354,21 @@
 	}
 
 	.login-modal{
-		position:fixed;
+		position:absolute;
 		top:80px;
 		left:0;
 		right:0;
-		margin:auto;
 		width:400px; //earmarked
 		height:280px; //earmarked
+		margin:auto;
 		background:$go-light;
 		border:2px solid $go-dark;
 		z-index: 20;
+		-webkit-animation:loginModal 0.3s;
+		-moz-animation:loginModal 0.3s;
+		-o-animation:loginModal 0.3s;
+		-ms-animation:loginModal 0.3s;
+		animation:loginModal 0.3s;
 
 		.login-success{
 			position:absolute;
@@ -278,7 +379,7 @@
 
 		.login-error{
 			position:absolute;
-			top:10px;
+			top:50px;
 			left:70px;
 			font-weight: bold;
 		}
@@ -293,10 +394,75 @@
 			height:220px;
 
 		}
+
+		@-webkit-keyframes loginModal{
+			0%{
+				width:380px;
+				height:260px;
+				opacity:0;
+			}
+			100%{
+				width:400px; //earmarked
+				height:280px; //earmarked
+				opacity:1;
+			}
+		}
+
+		@-moz-keyframes loginModal{
+			0%{
+				width:380px;
+				height:260px;
+				opacity:0;
+			}
+			100%{
+				width:400px; //earmarked
+				height:280px; //earmarked
+				opacity:1;
+			}
+		}
+
+		@-o-keyframes loginModal{
+			0%{
+				width:380px;
+				height:260px;
+				opacity:0;
+			}
+			100%{
+				width:400px; //earmarked
+				height:280px; //earmarked
+				opacity:1;
+			}
+		}
+
+		@-ms-keyframes loginModal{
+			0%{
+				width:380px;
+				height:260px;
+				opacity:0;
+			}
+			100%{
+				width:400px; //earmarked
+				height:280px; //earmarked
+				opacity:1;
+			}
+		}
+
+		@keyframes loginModal{
+			0%{
+				width:380px;
+				height:260px;
+				opacity:0;
+			}
+			100%{
+				width:400px; //earmarked
+				height:280px; //earmarked
+				opacity:1;
+			}
+		}
 	}
 
 	.register-modal{
-		position:fixed;
+		position:absolute;
 		top:50px;
 		left:0;
 		right:0;
@@ -306,6 +472,11 @@
 		background:$go-light;
 		border:2px solid $go-dark;
 		z-index: 20;
+		-webkit-animation:registerModal 0.3s;
+		-moz-animation:registerModal 0.3s;
+		-o-animation:registerModal 0.3s;
+		-ms-animation:registerModal 0.3s;
+		animation:registerModal 0.3s;
 
 		.register-form{
 			position:absolute;
@@ -315,6 +486,19 @@
 			margin:auto;
 			width:90%;
 			height:580px;
+		}
+
+		@-webkit-keyframes registerModal{
+			0%{
+				width:380px;
+				height:630px;
+				opacity:0;
+			}
+			100%{
+				width:400px;
+				height:650px;
+				opacity:1;
+			}
 		}
 	}
 
