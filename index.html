@@ -2,10 +2,11 @@
 <html data-ng-app="gameOn">
 	<head>
 		<title>Game On! Trustworthy game reviews.</title>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1" />
 		<link type="text/css" rel="stylesheet" href="app/css/default.css">
 		<link type="text/css" rel="stylesheet" href="app/libs/bootstrap-3.3.6/css/bootstrap.min.css">
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1" />
 	</head>
 	<body>
 		<div class="wrapper">
@@ -40,8 +41,8 @@
 
 				<div class="login-logout-lg" ng-if="!sessionActive">
 					<!-- login/registration menu for large devices -->
-					<a href="" data-ng-click="showHideLogin()">login</a>
-					<a href="" data-ng-click="showHideRegister()">register</a>
+					<a href="" id="nav-login-lg" data-ng-click="showHideLogin()">login</a>
+					<a href="" id="nav-register-lg" data-ng-click="showHideRegister()">register</a>
 				</div>
 
 				<div class="login-logout-lg" ng-if="sessionActive">
@@ -58,7 +59,7 @@
 				</a>
 
 				<!-- main menu for small devices -->
-				<div class="main-menu-sm" data-ng-if="!hideMenuSm">
+				<div class="main-menu-sm" data-ng-show="!hideMenuSm">
 					<a href="#/" data-ng-click="menuShowHideSm()">home</a>
 					<a href="#" data-ng-click="platformsShowHideSm()">platforms <span class="down-arrow"></span></a>
 					<div class="platform-list-sm" data-ng-if="!hidePlatformsSm">
@@ -70,8 +71,8 @@
 						<div class="search-btn-sm" data-ng-click="searchFunctionSm()">search</div>
 					</div>
 					<div class="login-logout-sm" data-ng-if="!sessionActive">
-						<a href="" data-toggle="modal" data-ng-click="menuLoginShowHideSm()">login</a>
-						<a href="" data-toggle="modal" data-ng-click="menuRegisterShowHideSm()">register</a>
+						<a href="" id="nav-login-sm" data-ng-click="menuLoginShowHideSm()">login</a>
+						<a href="" id="nav-register-sm" data-ng-click="menuRegisterShowHideSm()">register</a>
 					</div>
 					<div class="login-logout-sm" data-ng-if="sessionActive">
 						<a href="#/userprofile">{{ userInfo.username }}</a>
@@ -100,7 +101,7 @@
 
 				<!-- registration modal -->
 				<div id="register-modal" class="register-modal" data-ng-show="!hideRegisterModal">
-					<h3 class="form-header">register</h3>
+					<h3 class="form-header">register</h3><p class="form-success register-success" data-ng-if="registerSuccess">{{ registerSuccess }}</p>
 					<form role="form" id="register-form" class="register-form" enctype="multipart/form-data" data-ng-submit="processReg()">
 						<button class="exit-btn" type="reset" data-ng-click="showHideRegister()">&times;</button>
 						<div class="form-group">
@@ -128,12 +129,12 @@
 							<input id="register-lname" type="text" class="register-lname form-control" data-ng-model="registerLName">
 						</div>
 						<div class="form-group">
-							<label for="register-img">profile image:</label><p class="form-error" data-ng-if="registerImgError">{{ registerImgError }}</p>
+							<label for="register-img">profile image:</label><p id="register-img-error" class="form-error"></p>
 							<input id="register-img" type="file" name="registerImg" class="register-img form-control">
 						</div>
 
 						<button class="cancel-btn" type="reset" data-ng-click="showHideRegister()">cancel</button>
-						<input type="submit" class="submit-btn" value="submit" />
+						<input type="submit" class="submit-btn register-submit" value="submit" />
 					</form>
 				</div>
 
@@ -194,8 +195,8 @@
 		<script type="text/javascript" src="app/directives/bgImg.js"></script>
 		<script type="text/javascript" src="app/directives/reviewSummary.js"></script>
 
-		<!-- register image submission -->
-		<script type="text/javascript" src="/game_on/app/js/registerImg.js"></script>
+		<!-- custom jQuery -->
+		<script type="text/javascript" src="/game_on/app/js/js.js"></script>
 
 	</body>
 </html>

@@ -160,6 +160,19 @@ app.controller('headerCtrl', ['$scope', '$http', '$timeout', function($scope, $h
 		else{
 			$scope.hideModalOverlay = true;
 			$scope.hideRegisterModal = true;
+			$scope.registerUsernameError = false;
+			$scope.registerPassError = false;
+			$scope.registerPassConfError = false;
+			$scope.registerEmailError = false;
+			$scope.registerFNameError = false;
+			$scope.registerLNameError = false;
+			$scope.registerSuccess = false;
+			$scope.registerUsername = '';
+			$scope.registerPass = '';
+			$scope.registerPassConf = '';
+			$scope.registerEmail = '';
+			$scope.registerFName = '';
+			$scope.registerLName = '';
 		}
 	};
 
@@ -242,7 +255,6 @@ app.controller('headerCtrl', ['$scope', '$http', '$timeout', function($scope, $h
 	$scope.registerEmail = '';
 	$scope.registerFName = '';
 	$scope.registerLName = '';
-	$scope.registerImg = '';
 
 	$scope.processReg = function(){
 
@@ -253,7 +265,7 @@ app.controller('headerCtrl', ['$scope', '$http', '$timeout', function($scope, $h
 		$scope.registerEmailError = false;
 		$scope.registerFNameError = false;
 		$scope.registerLNameError = false;
-		$scope.registerImgError = false;
+		$scope.registerSuccess = false;
 
 		// creates reference point for descendent scopes
 		var self = this;
@@ -321,7 +333,26 @@ app.controller('headerCtrl', ['$scope', '$http', '$timeout', function($scope, $h
 				return false;
 			}
 
-			
+
+			// successful validation
+			else{
+				$http.post('/game_on/api/api.php', {
+					'user-registration':true,
+					'username':self.registerUsername,
+					'password':self.registerPass,
+					'email':self.registerEmail,
+					'fName':self.registerFName,
+					'lName':self.registerLName
+				})
+				.then(function success(response){
+					$scope.registerSuccess = 'successfully registered as '+self.registerUsername;
+
+					$timeout(function(){
+						$scope.showHideRegister();
+						$scope.registerSuccess = false;
+					}, 1200);
+				});
+			}
 
 		});
 	};

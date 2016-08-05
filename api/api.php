@@ -23,9 +23,89 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && empty($_POST)){
 		}
 	}
 
-	// file upload
-	
+	// file upload validation
+	if(isset($_FILES['file'])){
+		$fileType = exif_imagetype($_FILES['file']['tmp_name']);
+
+		switch($fileType){
+			case 1:
+			case 2:
+			case 3:
+				// file size too large
+				if(filesize($_FILES['file']['tmp_name']) > 1024000){
+					clearstatcache();
+					echo 'too big';
+				}
+				// uploaded file meets criteria
+				else{
+					$imgTempPath = $_SERVER['DOCUMENT_ROOT'].'game_on/app/img/imgTmp/'.$_FILES['file']['name'];
+					move_uploaded_file($_FILES['file']['tmp_name'], $imgTempPath);
+					$_FILES['file']['tmp_name'] = $imgTempPath;
+					$_SESSION['file'] = $_FILES['file'];
+					echo 'valid';
+				}
+				break;
+			// uploaded file is incorrect type
+			default:
+				echo 'invalid';
+		}
+	}
+
+	// user registration
+	if(isset($_POST['user-registration'])){
+		$userID = newUserID();
+		$username = sanitise($_POST['username']);
+		$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+		$email = sanitise($_POST['email']);
+		$fName = sanitise($_POST['fName']);
+		$lName = sanitise($_POST['lName']);
+		$imgFile = @$_SESSION['file'];
+		unset($_SESSION['file']);
+		$img = sanitise($imgFile['tmp_name']) or $img = '0.png';
+
+		if($img !== '0.png'){
+			$imgType = exif_imagetype($imgFile['tmp_name']);
+			switch($imgType){
+				case 1:
+					$imgType = '.gif';
+					break;
+				case 2:
+					$imgType = '.jpg';
+					break;
+				case 3:
+					$imgType = '.png';
+					break;
+			}
+			$imgPath = $_SERVER['DOCUMENT_ROOT'].'game_on/app/img/users/'.$userID.$imgType;
+			$imgName = $userID.$imgType;
+			rename($img, $imgPath);
+		}
+
+		$userInfo = array();
+
+		$userInfo['user_id'] = $userID;
+		$userInfo['username'] = $username;
+		$userInfo['password'] = $password;
+		$userInfo['email'] = $email;
+		$userInfo['fName'] = $fName;
+		$userInfo['lName'] = $lName;
+		$userInfo['img'] = $imgName;
+
+
+		userRegistration($userInfo);
+	}
 }
+
+// empties temporary image storage folder
+if(isset($_GET['clear-temp-files'])){
+	$files = glob($_SERVER['DOCUMENT_ROOT'].'game_on/app/img/imgTmp/*');
+	foreach($files as $file){
+		if(is_file($file)){
+			unlink($file);
+		}
+	}
+}
+
 
 // check if a session is active
 if(isset($_GET['session-status'])){

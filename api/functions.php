@@ -61,6 +61,34 @@ function userAuth($username, $password){
 
 }
 
+// determines new user id
+function newUserID(){
+	$latestUserID = 'SELECT MAX(user_id) AS "user_id" FROM users';
+	$latestUserID = query($latestUserID);
+	$latestUserID = mysqli_fetch_assoc($latestUserID);
+
+	$newUserID = $latestUserID['user_id'] + 1;
+
+	return $newUserID;
+}
+
+// inserts new user into db
+function userRegistration($userInfo){
+	$userID = $userInfo['user_id'];
+	$username = $userInfo['username'];
+	$password = $userInfo['password'];
+	$email = $userInfo['email'];
+	$fName = $userInfo['fName'];
+	$lName = $userInfo['lName'];
+	$img = $userInfo['img'];
+
+	$userReg = 'INSERT INTO users (user_id, user_type_id, username, user_password, user_email, user_fname, user_lname, user_img)
+				VALUES('.$userID.', 2, "'.$username.'", "'.$password.'", "'.$email.'", "'.$fName.'", "'.$lName.'", "'.$img.'")';
+
+
+	$userReg = query($userReg);
+}
+
 // retrieves a user's information from the database
 function userInfo($userID){
 	$userInfo = 'SELECT * FROM users

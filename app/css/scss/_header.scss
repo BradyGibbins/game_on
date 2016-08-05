@@ -375,6 +375,7 @@
 			top:10px;
 			left:70px;
 			font-weight: bold;
+			width:150px;
 		}
 
 		.login-error{
@@ -478,6 +479,14 @@
 		-ms-animation:registerModal 0.3s;
 		animation:registerModal 0.3s;
 
+		.register-success{
+			position:absolute;
+			top:10px;
+			left:100px;
+			font-weight: bold;
+			width:250px;
+		}
+
 		.register-form{
 			position:absolute;
 			top:50px;
@@ -486,6 +495,11 @@
 			margin:auto;
 			width:90%;
 			height:580px;
+
+
+			#register-img-error{
+				display:none;
+			}
 		}
 
 		@-webkit-keyframes registerModal{

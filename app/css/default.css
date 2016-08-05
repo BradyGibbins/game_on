@@ -134,7 +134,8 @@ footer {
   padding: 5px;
   background: #00c41c;
   color: white;
-  display: inline; }
+  display: inline;
+  text-align: center; }
 
 .form-error {
   margin: 0;
@@ -501,7 +502,8 @@ footer {
       position: absolute;
       top: 10px;
       left: 70px;
-      font-weight: bold; }
+      font-weight: bold;
+      width: 150px; }
     .main-header .login-modal .login-error {
       position: absolute;
       top: 50px;
@@ -576,6 +578,12 @@ footer {
     -o-animation: registerModal 0.3s;
     -ms-animation: registerModal 0.3s;
     animation: registerModal 0.3s; }
+    .main-header .register-modal .register-success {
+      position: absolute;
+      top: 10px;
+      left: 100px;
+      font-weight: bold;
+      width: 250px; }
     .main-header .register-modal .register-form {
       position: absolute;
       top: 50px;
@@ -584,6 +592,8 @@ footer {
       margin: auto;
       width: 90%;
       height: 580px; }
+      .main-header .register-modal .register-form #register-img-error {
+        display: none; }
 @-webkit-keyframes registerModal {
   0% {
     width: 380px;
