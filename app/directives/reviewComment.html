@@ -1,0 +1,15 @@
+<div class="row">
+	<div class="col-xs-12">
+		<div class="comment-cont">
+			<div class="comment-details">
+				{{ comment.comment_time | date : 'd/MM/yyyy'}} - {{ comment.username }} said:
+			</div>
+			<div class="comment-img">
+				<img data-ng-src="app/img/users/{{comment.user_img}}" alt="{{ comment.username }}'s user image">
+			</div>
+			<div class="comment-content">
+				{{ comment.comment_content }}
+			</div>
+		</div>
+	</div>
+</div>

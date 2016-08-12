@@ -23,6 +23,29 @@ html, body{
 	margin-bottom:20px;
 	display: inline-block; // small devices only?
 	padding:10px;
+	@include borderRadius(5px);
+	overflow:hidden;
+}
+
+.back-btn{
+	display:inline-block;
+	float:right;
+	margin-top: 30px;
+	@include borderRadius(5px);
+	overflow:hidden;
+	padding:10px;
+	border:1px solid $go-dark;
+	background:$go-yellow;
+	color:$go-dark;
+	text-decoration: none;
+	font-family: 'Open Sans', sans-serif;
+	text-align: center;
+	@include transition(background-color 0.5s ease);
+
+	&:hover{
+		text-decoration: none;
+		background:$go-yellow / 1.1;
+	}
 }
 
 .review-listing{
@@ -37,6 +60,8 @@ html, body{
 		border-left: 1px solid $go-dark;
 		display:block;
 		float:left;
+		@include borderRadius(5px 0 0 5px);
+		overflow:hidden;
 
 		h2{
 			display:block;
@@ -82,6 +107,8 @@ html, body{
 		height:150px;
 		background: $go-dark;
 		float:right;
+		@include borderRadius(0 5px 5px 0);
+		overflow:hidden;
 
 		.review-clip{
 			width:80%;

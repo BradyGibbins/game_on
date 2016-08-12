@@ -1,0 +1,177 @@
+.review-stats{
+	position:relative;
+	height:300px;
+	overflow: hidden;
+	border:1px solid $go-dark;
+
+	.img-overlay{
+		position:absolute;
+		width:100%;
+		height:100%;
+		background:rgb(0,0,0);
+		opacity:0.5;
+		z-index: 2;
+	}
+
+	p{
+		position:absolute;
+		font-family:'Open Sans', sans-serif;
+		font-size: 1.1em;
+		text-shadow:0 0 2px black;
+		color:$go-light;
+		z-index: 3;
+
+		&.author-name{
+			bottom:20px;
+			left:10px;
+		}
+
+		&.review-date{
+			bottom:0;
+			left:10px;
+		}
+	}
+
+	.review-score{
+		position:absolute;
+		width:200px;
+		height:auto;
+		z-index: 3;
+		right:50px;
+		top:0;
+		bottom:0;
+		margin:auto;
+	}
+
+	.review-main-img{
+		position:absolute;
+		width:100%;
+		height:auto;
+		margin-top:-50px;
+		z-index: 1;
+	}
+}
+
+.review-content{
+	width:100%;
+	padding: 20px;
+	background:$go-light;
+	border:1px solid $go-dark;
+	margin:20px auto;
+
+	p{
+		font-family: 'Open Sans',sans-serif;
+		font-size:1.1em;
+	}
+}
+
+.no-comments{
+	background:$go-dark;
+	text-align: center;
+	height:40px;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 1em;
+	color:$go-yellow;
+	line-height: 40px;
+	margin-bottom:20px;
+	padding: 0;
+	@include borderRadius(5px);
+}
+
+.comment-submit-cont{
+	min-height:120px;
+	height:120px;
+	border:1px solid $go-dark;
+	background: $go-light;
+	margin-bottom:20px;
+
+	.comment-user-img{
+		display: inline-block;
+		width:100px;
+		height:100px;
+		overflow: hidden;
+		margin-top:10px;
+		margin-left:10px;
+
+		img{
+			width:100%;
+			height:auto;
+		}
+	}
+
+	.comment-form{
+		position:relative;
+		display: inline-block;
+		width:1000px; // earmarked
+		height:100px;
+
+		.comment-text{
+			position:absolute;
+			left:30px;
+			width:80%;
+			max-width:80%;
+			height:100px;
+			max-height: 100px;
+		}
+
+		.submit-btn{
+			position:absolute;
+			top:0;
+			right:0;
+		}
+
+		.cancel-btn{
+			position:absolute;
+			bottom:0;
+			right:0;
+		}
+	}
+}
+
+.comment-cont{
+	position: relative;
+	width:100%;
+	height:150px;
+	background: $go-light;
+	border:1px solid $go-dark;
+	margin-bottom:10px;
+	display: table;
+	@include borderRadius(5px);
+
+	.comment-details{
+		position: absolute;
+		width:100%;
+		height:30px;
+		line-height: 30px;
+		background: $go-dark;
+		display: inline-block;
+		font-family: 'Open Sans', sans-serif;
+		font-size: 1em;
+		color:$go-light;
+		padding-left:10px;
+	}
+
+	.comment-img{
+		width:70px;
+		height:70px;
+		margin-top:50px;
+		margin-left:20px;
+		margin-right: 0;
+		overflow: hidden;
+		float: left;
+
+		img{
+			width:100%;
+			height:auto;
+		}
+	}
+
+	.comment-content{
+		display: inline-block;
+		width:90%;
+		margin-top: 20px;
+		margin-left: 20px;
+		padding:20px;
+		float: left;
+	}
+}

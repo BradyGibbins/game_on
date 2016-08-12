@@ -180,4 +180,24 @@ if(isset($_GET['platform-reviews'])){
 		echo allPlatformReviews($_GET['platform-reviews']);
 	}
 }
+
+// get review details
+if(isset($_GET['review-id'])){
+	if(!reviewDetails($_GET['review-id'])){
+		echo '{"error":"invalid review id"}';
+	}
+	else{
+		echo reviewDetails($_GET['review-id']);
+	}
+}
+
+// get review comments
+if(isset($_GET['review-comments'])){
+	if(!reviewComments($_GET['review-comments'])){
+		echo '{"error":"no comments"}';
+	}
+	else{
+		echo reviewComments($_GET['review-comments']);
+	}
+}
 ?>

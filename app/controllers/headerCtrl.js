@@ -1,6 +1,7 @@
-app.controller('headerCtrl', ['$scope', '$http', '$timeout', function($scope, $http, $timeout){
+app.controller('headerCtrl', ['$scope', '$http', '$timeout', '$location', function($scope, $http, $timeout, $location){
 
-	// check session status
+
+// check session status
 	$http.get('/game_on/api/api.php?session-status')
 	.then(function success(response){
 		if(response.data.session === 'false'){
@@ -17,19 +18,13 @@ app.controller('headerCtrl', ['$scope', '$http', '$timeout', function($scope, $h
 
 				$scope.userInfo = {
 					userID:data.user_id,
-					userType:data.user_type_id,
-					username:data.username,
-					email:data.user_email,
-					fname:data.user_fname,
-					lname:data.user_lname,
-					joinDate:data.user_join_date,
-					img:data.user_img
+					username:data.username
 				};
 			});
 		}
 	});
 
-	// retrieve platform list from db
+// retrieve platform list from db
 	$http.get('/game_on/api/api.php?list-platforms')
 		.then(function success(response){
 			
@@ -37,12 +32,15 @@ app.controller('headerCtrl', ['$scope', '$http', '$timeout', function($scope, $h
  
 		});
 
-	
 
 
-	// MENU ELEMENTS FOR LARGE DEVICES
 
-	// show/hide platform list on large devices
+
+
+
+// MENU ELEMENTS FOR LARGE DEVICES
+
+// show/hide platform list on large devices
 	$scope.hidePlatformsLg = true;
 	$scope.platformsShowHideLg = function(){
 		if($scope.hidePlatformsLg){
@@ -53,7 +51,7 @@ app.controller('headerCtrl', ['$scope', '$http', '$timeout', function($scope, $h
 		}
 	};
 
-	// show/hide search bar on large devices
+// show/hide search bar on large devices
 	$scope.hideSearchLg = true;
 	$scope.searchShowHideLg = function(){
 		if($scope.hideSearchLg){
@@ -69,9 +67,9 @@ app.controller('headerCtrl', ['$scope', '$http', '$timeout', function($scope, $h
 
 
 
-	// MENU ELEMENTS FOR SMALL DEVICES
+// MENU ELEMENTS FOR SMALL DEVICES
 	
-	// show/hide platform list on small devices
+// show/hide platform list on small devices
 	$scope.hidePlatformsSm = true;
 	$scope.platformsShowHideSm = function(){
 		if($scope.hidePlatformsSm){
@@ -82,7 +80,7 @@ app.controller('headerCtrl', ['$scope', '$http', '$timeout', function($scope, $h
 		}
 	};
 
-	// show/hide search bar on small devices
+// show/hide search bar on small devices
 	$scope.hideSearchSm = true;
 	$scope.searchShowHideSm = function(){
 		if($scope.hideSearchSm){
@@ -93,7 +91,7 @@ app.controller('headerCtrl', ['$scope', '$http', '$timeout', function($scope, $h
 		}
 	};
 
-	// show/hide menu on small devices
+// show/hide menu on small devices
 	$scope.menuSmActive = '';
 	$scope.hideMenuSm = true;
 	$scope.menuShowHideSm = function(){
@@ -107,13 +105,13 @@ app.controller('headerCtrl', ['$scope', '$http', '$timeout', function($scope, $h
 		}
 	};
 
-	// show/hide both menu and platforms on small devices
+// show/hide both menu and platforms on small devices
 	$scope.menuPlatformsShowHideSm = function(){
 		$scope.platformsShowHideSm();
 		$scope.menuShowHideSm();
 	};
 
-	// hide menu and show login/registration modals on small devices
+// hide menu and show login/registration modals on small devices
 	$scope.menuLoginShowHideSm = function(){
 		$scope.menuShowHideSm();
 		$scope.showHideLogin();
@@ -128,9 +126,9 @@ app.controller('headerCtrl', ['$scope', '$http', '$timeout', function($scope, $h
 
 
 
-	// DEVICE SIZE INDEPENDENT STUFF
+// DEVICE SIZE INDEPENDENT STUFF
 
-	// login and registration modals
+// login and registration modals
 	$scope.hideModalOverlay = true;
 
 	$scope.hideLoginModal = true;
@@ -177,7 +175,7 @@ app.controller('headerCtrl', ['$scope', '$http', '$timeout', function($scope, $h
 	};
 
 
-	// login processing
+// login processing
 	$scope.loginUsername = '';
 	$scope.loginPassword = '';
 
@@ -216,17 +214,12 @@ app.controller('headerCtrl', ['$scope', '$http', '$timeout', function($scope, $h
 				else{
 					$scope.userInfo = {
 						userID:data.user_id,
-						userType:data.user_type_id,
-						username:data.username,
-						email:data.user_email,
-						fname:data.user_fname,
-						lname:data.user_lname,
-						joinDate:data.user_join_date,
-						img:data.user_img
+						username:data.username
 					};
 
 					$scope.loginSuccess = 'login successful';
 					$scope.sessionActive = true;
+					$location.path('/');
 
 					$timeout(function(){
 						$scope.showHideLogin();
@@ -238,17 +231,18 @@ app.controller('headerCtrl', ['$scope', '$http', '$timeout', function($scope, $h
 	};
 
 
-	// logout user
+// logout user
 	$scope.logout = function(){
 		$http.get('/game_on/api/api.php?logout')
 		.then(function success(){
 			$scope.sessionActive = false;
 			$scope.userInfo = {};
+			$location.path('/');
 		});
 	};
 
 
-	// user registration procesing
+// user registration procesing
 	$scope.registerUsername = '';
 	$scope.registerPass = '';
 	$scope.registerPassConf = '';
@@ -258,7 +252,7 @@ app.controller('headerCtrl', ['$scope', '$http', '$timeout', function($scope, $h
 
 	$scope.processReg = function(){
 
-
+		// set all error and success conditions to false before validation
 		$scope.registerUsernameError = false;
 		$scope.registerPassError = false;
 		$scope.registerPassConfError = false;
@@ -334,7 +328,7 @@ app.controller('headerCtrl', ['$scope', '$http', '$timeout', function($scope, $h
 			}
 
 
-			// successful validation
+			// successful registration validation
 			else{
 				$http.post('/game_on/api/api.php', {
 					'user-registration':true,
@@ -345,8 +339,10 @@ app.controller('headerCtrl', ['$scope', '$http', '$timeout', function($scope, $h
 					'lName':self.registerLName
 				})
 				.then(function success(response){
+					// shows registration success message
 					$scope.registerSuccess = 'successfully registered as '+self.registerUsername;
 
+					// hides the registration modal after successful registration
 					$timeout(function(){
 						$scope.showHideRegister();
 						$scope.registerSuccess = false;

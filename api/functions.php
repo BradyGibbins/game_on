@@ -258,17 +258,39 @@ function reviewDetails($reviewID){
 		return false;
 	}
 	else{
-		return json_encode(mysqli_fetch_assoc($reviewDetails));
+		$reviewDetails = mysqli_fetch_assoc($reviewDetails);
+
+		$reviewParas = explode("\r\n", $reviewDetails['review_content']);
+
+		$paras = array();
+		$i = 0;
+
+		foreach($reviewParas as $para){
+			if($para === "\r\n"){
+				continue;
+			}
+			elseif($para === ""){
+				continue;
+			}
+			else{
+				$paras[$i] = $para;
+				$i++;
+			}
+		}
+
+		$reviewDetails['review_content'] = $paras;
+		return json_encode($reviewDetails);
 	}
 }
 
 
 // return array of comment objects for a given review
 function reviewComments($reviewID){
-	$reviewComments = 'SELECT * FROM comments
+	$reviewComments = 'SELECT *, DATE(comment_time) AS "comment_time" FROM comments
 					   INNER JOIN users
 					   ON comments.user_id = users.user_id
-					   WHERE review_id = '.$reviewID;
+					   WHERE review_id = '.$reviewID.'
+					   ORDER BY comment_time DESC';
 	$reviewComments = query($reviewComments);
 	$i = 0;
 

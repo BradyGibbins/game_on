@@ -1,0 +1,53 @@
+<div class="row">
+	<div class="col-xs-12">
+		<h1 class="page-title">{{ reviewDetails.review_title }}</h1>
+		<a href="#/platforms/{{ reviewDetails.platform_id }}" class="back-btn">back to {{ reviewDetails.platform_name }}</a>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-xs-12">
+		<div class="review-stats">
+			<div class="img-overlay">
+			</div>
+			<p class="author-name">
+				Author: {{ reviewDetails.user_fname + ' ' + reviewDetails.user_lname }}
+			</p>
+			<p class="review-date">
+				Published: {{ reviewDetails.review_date | date : 'MMMM d y' }}
+			</p>
+			<img ng-src="app/img/scores/{{ reviewDetails.review_rating }}.png" alt="review score" class="review-score" />
+			<img ng-src="app/img/reviews/{{ reviewDetails.review_img }}" alt="image of {{ reviewDetails.review_title }}" class="review-main-img" />
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-xs-12">
+		<div class="review-content">
+		</div>
+	</div>
+</div>
+
+<div class="row" data-ng-if="commentCount == 0">
+	<h3 class="col-xs-4 col-xs-offset-4 no-comments">
+		there are no comments for this review
+	</h3>
+</div>
+
+<div class="row" data-ng-if="sessionActive">
+	<div class="col-xs-12">
+		<div class="comment-submit-cont">
+			<div class="comment-user-img">
+				<img ng-src="app/img/users/{{userInfo.userImg}}" alt="{{userInfo.username}}'s user image" />
+			</div>
+			<form class="comment-form">
+				<textarea class="comment-text form-control" placeholder="comment as {{ userInfo.username }}..." data-ng-model="commentInput"></textarea>
+				<input type="submit" class="submit-btn" value="submit">
+				<input type="reset" class="cancel-btn" value="clear">
+			</form>
+		</div>
+	</div>
+</div>
+
+<review-comment data-ng-repeat="comment in reviewComments" comment="comment" data-ng-if="commentCount > 0"></review-comment>
