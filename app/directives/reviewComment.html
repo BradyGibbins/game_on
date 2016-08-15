@@ -2,7 +2,10 @@
 	<div class="col-xs-12">
 		<div class="comment-cont">
 			<div class="comment-details">
-				{{ comment.comment_time | date : 'd/MM/yyyy'}} - {{ comment.username }} said:
+				{{ comment.comment_time | date : 'd/MM/yyyy'}} - <span class="comment-username">{{ comment.username }}</span> said:
+				<a href="" class="comment-delete" data-ng-click="showCommentDelete(comment.comment_id, comment.review_id)" data-ng-if="userInfo.userID == comment.user_id || userInfo.userType == 1">
+					<img src="app/img/delete-btn.png" alt="delete this comment" title="delete this comment" />
+				</a>
 			</div>
 			<div class="comment-img">
 				<img data-ng-src="app/img/users/{{comment.user_img}}" alt="{{ comment.username }}'s user image">

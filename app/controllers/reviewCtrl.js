@@ -1,4 +1,4 @@
-app.controller('reviewCtrl', ['$scope', '$routeParams', '$http', function($scope, $routeParams, $http){
+app.controller('reviewCtrl', ['$scope', '$routeParams', '$http', '$timeout', function($scope, $routeParams, $http, $timeout){
 
 // check session status
 	$http.get('/game_on/api/api.php?session-status')
@@ -32,7 +32,6 @@ app.controller('reviewCtrl', ['$scope', '$routeParams', '$http', function($scope
 	// retrieve review information
 	$http.get('/game_on/api/api.php?review-id='+$scope.reviewID)
 	.then(function success(response){
-		// console.log(response.data);
 		$scope.reviewDetails = response.data;
 
 		var reviewContent = $scope.reviewDetails.review_content;
@@ -61,4 +60,64 @@ app.controller('reviewCtrl', ['$scope', '$routeParams', '$http', function($scope
 		}
 	});
 
+// submit user comments on reviews
+	$scope.commentInput = '';
+	$scope.submitComment = function(){
+		$scope.commentError = false;
+		$scope.commentSuccess = false;
+		if($scope.commentInput.length === 0){
+			$scope.commentError = 'please enter a comment before submitting';
+		}
+		else if($scope.commentInput.length > 500){
+			$scope.commentError = 'comments must be less than 500 characters in length';
+		}
+		else{
+			$http.post('/game_on/api/api.php', {
+				reviewID:$scope.reviewID,
+				comment:$scope.commentInput
+			})
+			.then(function success(response){
+				$scope.commentInput = '';
+				$scope.reviewComments = response.data;
+				$scope.commentSuccess = 'comment successfully submitted';
+				$timeout(function(){
+					$scope.commentSuccess = false;
+				}, 1000);
+			});
+		}
+	};
+
+// show comment deletion modal
+	$scope.showCommentDelete = function(commentID, reviewID){
+		$scope.hideCommentDeleteModal = false;
+		$scope.hideModalOverlay = false;
+		$scope.commentToDelete = commentID;
+		$scope.commentParent = reviewID;
+	};
+
+// hide comment deletion modal
+	$scope.hideCommentDelete = function(){
+		$scope.hideCommentDeleteModal = true;
+		$scope.hideModalOverlay = true;
+	};
+
+// delete comment
+	$scope.deleteComment = function(commentID, reviewID){
+		$http.get('/game_on/api/api.php?delete-comment='+commentID+'&comment-parent='+reviewID)
+		.then(function success(response){
+			var data = response.data;
+			if(data.error === 'no comments'){
+				$scope.commentCount = 0;
+			}
+			else{
+				$scope.commentCount = data.length;
+				$scope.reviewComments = response.data;
+				$scope.hideCommentDeleteModal = true;
+				$scope.hideModalOverlay = true;
+			}
+		});
+	};
+
+	$scope.hideCommentDeleteModal = true;
+	$scope.hideModalOverlay = true;
 }]);

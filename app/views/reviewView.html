@@ -41,13 +41,26 @@
 			<div class="comment-user-img">
 				<img ng-src="app/img/users/{{userInfo.userImg}}" alt="{{userInfo.username}}'s user image" />
 			</div>
-			<form class="comment-form">
-				<textarea class="comment-text form-control" placeholder="comment as {{ userInfo.username }}..." data-ng-model="commentInput"></textarea>
+			<form class="comment-form" data-ng-submit="submitComment()">
+				<p class="form-error comment-error" data-ng-if="commentError">{{ commentError }}</p>
+				<p class="form-success comment-success" data-ng-if="commentSuccess">{{ commentSuccess }}</p>
+				<textarea class="comment-text form-control" placeholder="comment as {{ userInfo.username }}..." data-ng-model="$parent.commentInput"></textarea>
 				<input type="submit" class="submit-btn" value="submit">
-				<input type="reset" class="cancel-btn" value="clear">
+				<input type="reset" class="cancel-btn" data-ng-click="$parent.commentInput = ''" value="clear">
 			</form>
 		</div>
 	</div>
 </div>
 
-<review-comment data-ng-repeat="comment in reviewComments" comment="comment" data-ng-if="commentCount > 0"></review-comment>
+<review-comment data-ng-repeat="comment in reviewComments" comment="comment" current-user="userInfo" data-ng-if="commentCount > 0"></review-comment>
+
+<!-- comment deletion confirmation -->
+<div class="comment-delete-modal" data-ng-if="!hideCommentDeleteModal">
+	<h3 class="alert-header">confirm comment deletion</h3>
+	<button class="submit-btn" data-ng-click="hideCommentDelete()">cancel</button>
+	<button class="cancel-btn" data-ng-click="deleteComment(commentToDelete, commentParent)">delete</button>
+</div>
+
+<!-- modal overlay -->
+<div class="modal-overlay" data-ng-if="!hideModalOverlay">
+</div>

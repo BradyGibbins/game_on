@@ -309,4 +309,18 @@ function reviewComments($reviewID){
 }
 
 
+// delete specified comment
+function commentDelete($commentID){
+	$deleteComment = 'DELETE FROM comments
+					  WHERE comment_id = '.$commentID;
+
+	$deleteComment = query($deleteComment);
+}
+
+// submit comment
+function commentSubmit($userID, $reviewID, $comment){
+	$submitComment = 'INSERT INTO comments (user_id, review_id, comment_content)
+					  VALUES('.$userID.', '.$reviewID.', "'.$comment.'")';
+	$submitComment = query($submitComment);
+}
 ?>

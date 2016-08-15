@@ -39,13 +39,13 @@
 					<a data-ng-repeat="platform in platformList" data-ng-href="#/platforms/{{platform.platform_id}}" data-ng-click="platformsShowHideLg()">{{ platform.platform_name }}</a>
 				</div>
 
-				<div class="login-logout-lg" ng-if="!sessionActive">
+				<div class="login-logout-lg" data-ng-show="!sessionActive">
 					<!-- login/registration menu for large devices -->
 					<a href="" id="nav-login-lg" data-ng-click="showHideLogin()">login</a>
 					<a href="" id="nav-register-lg" data-ng-click="showHideRegister()">register</a>
 				</div>
 
-				<div class="login-logout-lg" ng-if="sessionActive">
+				<div class="login-logout-lg" data-ng-show="sessionActive">
 					<!-- profile info/log out menu for large devices -->
 					<a href="#/userprofile">{{ userInfo.username }}</a>
 					<a href="" data-ng-click="logout()">log out</a>
@@ -70,11 +70,11 @@
 						<input type="text" class="search-sm" placeholder="enter your search term" />
 						<div class="search-btn-sm" data-ng-click="searchFunctionSm()">search</div>
 					</div>
-					<div class="login-logout-sm" data-ng-if="!sessionActive">
+					<div class="login-logout-sm" data-ng-show="!sessionActive">
 						<a href="" id="nav-login-sm" data-ng-click="menuLoginShowHideSm()">login</a>
 						<a href="" id="nav-register-sm" data-ng-click="menuRegisterShowHideSm()">register</a>
 					</div>
-					<div class="login-logout-sm" data-ng-if="sessionActive">
+					<div class="login-logout-sm" data-ng-show="sessionActive">
 						<a href="#/userprofile">{{ userInfo.username }}</a>
 						<a href="" data-ng-click="logout()">log out</a>
 					</div>

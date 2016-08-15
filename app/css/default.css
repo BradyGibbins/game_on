@@ -27,6 +27,26 @@ html, body {
   border-radius: 5px;
   overflow: hidden; }
 
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 720px;
+  background: black;
+  opacity: 0.4;
+  z-index: 19; }
+
+.alert-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  background: #3d3d3d;
+  color: #efefef; }
+
 .back-btn {
   display: inline-block;
   float: right;
@@ -685,16 +705,6 @@ footer {
     width: 400px;
     height: 650px;
     opacity: 1; } }
-  .main-header .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    min-height: 720px;
-    background: black;
-    opacity: 0.4;
-    z-index: 19; }
   .main-header .loading-overlay {
     position: fixed;
     width: 100%;
@@ -825,6 +835,15 @@ footer {
     display: inline-block;
     width: 1000px;
     height: 100px; }
+    .comment-submit-cont .comment-form .comment-success,
+    .comment-submit-cont .comment-form .comment-error {
+      position: absolute;
+      z-index: 5;
+      left: 20px; }
+    .comment-submit-cont .comment-form .comment-success {
+      top: -30px; }
+    .comment-submit-cont .comment-form .comment-error {
+      top: -10px; }
     .comment-submit-cont .comment-form .comment-text {
       position: absolute;
       left: 30px;
@@ -856,6 +875,7 @@ footer {
   border-radius: 5px; }
   .comment-cont .comment-details {
     position: absolute;
+    left: 0;
     width: 100%;
     height: 30px;
     line-height: 30px;
@@ -865,6 +885,17 @@ footer {
     font-size: 1em;
     color: #efefef;
     padding-left: 10px; }
+    .comment-cont .comment-details .comment-username {
+      color: #ffe400; }
+    .comment-cont .comment-details .comment-delete {
+      position: absolute;
+      top: -2px;
+      right: 5px;
+      width: 20px;
+      height: 20px; }
+      .comment-cont .comment-details .comment-delete img {
+        width: 80%;
+        height: auto; }
   .comment-cont .comment-img {
     width: 70px;
     height: 70px;
@@ -884,6 +915,83 @@ footer {
     padding: 20px;
     float: left; }
 
+.comment-delete-modal {
+  position: fixed;
+  top: 0;
+  bottom: 200px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 400px;
+  height: 150px;
+  background: #efefef;
+  border: 1px solid #3d3d3d;
+  z-index: 20;
+  -webkit-animation: commentDeleteModal 0.3s;
+  -moz-animation: commentDeleteModal 0.3s;
+  -o-animation: commentDeleteModal 0.3s;
+  -ms-animation: commentDeleteModal 0.3s;
+  animation: commentDeleteModal 0.3s; }
+  .comment-delete-modal h3 {
+    height: 30px;
+    line-height: 30px;
+    text-align: center; }
+  .comment-delete-modal .submit-btn,
+  .comment-delete-modal .cancel-btn {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    right: 0;
+    margin: auto; }
+  .comment-delete-modal .cancel-btn {
+    left: 150px; }
+  .comment-delete-modal .submit-btn {
+    right: 150px; }
+@-webkit-keyframes commentDeleteModal {
+  0% {
+    width: 380px;
+    height: 130px;
+    opacity: 0; }
+  100% {
+    width: 400px;
+    height: 150px;
+    opacity: 1; } }
+@-moz-keyframes commentDeleteModal {
+  0% {
+    width: 380px;
+    height: 130px;
+    opacity: 0; }
+  100% {
+    width: 400px;
+    height: 150px;
+    opacity: 1; } }
+@-o-keyframes commentDeleteModal {
+  0% {
+    width: 380px;
+    height: 130px;
+    opacity: 0; }
+  100% {
+    width: 400px;
+    height: 150px;
+    opacity: 1; } }
+@-ms-keyframes commentDeleteModal {
+  0% {
+    width: 380px;
+    height: 130px;
+    opacity: 0; }
+  100% {
+    width: 400px;
+    height: 150px;
+    opacity: 1; } }
+@keyframes commentDeleteModal {
+  0% {
+    width: 380px;
+    height: 130px;
+    opacity: 0; }
+  100% {
+    width: 400px;
+    height: 150px;
+    opacity: 1; } }
 @media screen and (max-width: 767px) {
   .main-header .main-menu-lg {
     display: none; }
