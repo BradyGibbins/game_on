@@ -195,6 +195,21 @@ else{
 		}
 	}
 
+	// list latest reviews for a platform
+	if(isset($_GET['latest-reviews'])){
+		if(!latestPlatformReviews($_GET['latest-reviews'])){
+			echo '{"error":"invalid platform id"}';
+		}
+		else{
+			if(isset($_GET['count'])){
+				echo latestPlatformReviews($_GET['latest-reviews'], $_GET['count']);
+			}
+			else{
+				echo latestPlatformReviews($_GET['latest-reviews']);
+			}
+		}
+	}
+
 	// get review details
 	if(isset($_GET['review-id'])){
 		if(!reviewDetails($_GET['review-id'])){
@@ -215,6 +230,7 @@ else{
 		}
 	}
 
+	// delete a comment
 	if(isset($_GET['delete-comment']) && isset($_GET['comment-parent'])){
 		commentDelete($_GET['delete-comment']);
 		if(!reviewComments($_GET['comment-parent'])){

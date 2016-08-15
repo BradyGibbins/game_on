@@ -1,5 +1,50 @@
 app.controller('headerCtrl', ['$scope', '$http', '$timeout', '$location', function($scope, $http, $timeout, $location){
 
+	$scope.hideUI = function(exception){
+		
+		switch(exception){
+			case 'hidePlatformsLg':
+				$scope.hideSearchLg = true;
+				$scope.hidePlatformsSm = true;
+				$scope.hideSearchSm = true;
+				$scope.hideMenuSm = true;
+				break;
+			
+			case 'hideSearchLg':
+				$scope.hidePlatformsLg = true;
+				$scope.hidePlatformsSm = true;
+				$scope.hideSearchSm = true;
+				$scope.hideMenuSm = true;
+				break;
+			
+			case 'hidePlatformsSm':
+				$scope.hidePlatformsLg = true;
+				$scope.hideSearchLg = true;
+				$scope.hideSearchSm = true;
+				break;
+			
+			case 'hideSearchSm':
+				$scope.hidePlatformsLg = true;
+				$scope.hideSearchLg = true;
+				$scope.hidePlatformsSm = true;
+				break;
+			
+			case 'hideMenuSm':
+				$scope.hidePlatformsLg = true;
+				$scope.hideSearchLg = true;
+				$scope.hidePlatformsSm = true;
+				$scope.hideSearchSm = true;
+				break;
+			
+			default:
+				$scope.hidePlatformsLg = true;
+				$scope.hideSearchLg = true;
+				$scope.hidePlatformsSm = true;
+				$scope.hideSearchSm = true;
+				$scope.hideMenuSm = true;
+		}
+	};
+
 
 // check session status
 	$http.get('/game_on/api/api.php?session-status')
@@ -35,14 +80,14 @@ app.controller('headerCtrl', ['$scope', '$http', '$timeout', '$location', functi
 
 
 
-
-
-
 // MENU ELEMENTS FOR LARGE DEVICES
 
 // show/hide platform list on large devices
 	$scope.hidePlatformsLg = true;
 	$scope.platformsShowHideLg = function(){
+
+		$scope.hideUI('hidePlatformsLg');
+
 		if($scope.hidePlatformsLg){
 			$scope.hidePlatformsLg = false;
 		}
@@ -54,6 +99,9 @@ app.controller('headerCtrl', ['$scope', '$http', '$timeout', '$location', functi
 // show/hide search bar on large devices
 	$scope.hideSearchLg = true;
 	$scope.searchShowHideLg = function(){
+
+		$scope.hideUI('hideSearchLg');
+
 		if($scope.hideSearchLg){
 			$scope.hideSearchLg = false;
 		}
@@ -72,6 +120,9 @@ app.controller('headerCtrl', ['$scope', '$http', '$timeout', '$location', functi
 // show/hide platform list on small devices
 	$scope.hidePlatformsSm = true;
 	$scope.platformsShowHideSm = function(){
+
+		$scope.hideUI('hidePlatformsSm');
+
 		if($scope.hidePlatformsSm){
 			$scope.hidePlatformsSm = false;
 		}
@@ -83,6 +134,9 @@ app.controller('headerCtrl', ['$scope', '$http', '$timeout', '$location', functi
 // show/hide search bar on small devices
 	$scope.hideSearchSm = true;
 	$scope.searchShowHideSm = function(){
+
+		$scope.hideUI('hideSearchSm');
+
 		if($scope.hideSearchSm){
 			$scope.hideSearchSm = false;
 		}
@@ -95,6 +149,9 @@ app.controller('headerCtrl', ['$scope', '$http', '$timeout', '$location', functi
 	$scope.menuSmActive = '';
 	$scope.hideMenuSm = true;
 	$scope.menuShowHideSm = function(){
+
+		$scope.hideUI('hideMenuSm');
+
 		if($scope.hideMenuSm){
 			$scope.hideMenuSm = false;
 			$scope.menuSmActive = 'active';
@@ -133,6 +190,9 @@ app.controller('headerCtrl', ['$scope', '$http', '$timeout', '$location', functi
 
 	$scope.hideLoginModal = true;
 	$scope.showHideLogin = function(){
+
+		$scope.hideUI();
+
 		if($scope.hideLoginModal){
 			$scope.hideModalOverlay = false;
 			$scope.hideLoginModal = false;
@@ -151,6 +211,9 @@ app.controller('headerCtrl', ['$scope', '$http', '$timeout', '$location', functi
 
 	$scope.hideRegisterModal = true;
 	$scope.showHideRegister = function(){
+
+		$scope.hideUI();
+
 		if($scope.hideRegisterModal){
 			$scope.hideModalOverlay = false;
 			$scope.hideRegisterModal = false;
@@ -233,6 +296,9 @@ app.controller('headerCtrl', ['$scope', '$http', '$timeout', '$location', functi
 
 // logout user
 	$scope.logout = function(){
+
+		$scope.hideUI();
+
 		$http.get('/game_on/api/api.php?logout')
 		.then(function success(){
 			$scope.sessionActive = false;

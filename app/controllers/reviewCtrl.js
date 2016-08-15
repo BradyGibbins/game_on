@@ -1,5 +1,6 @@
 app.controller('reviewCtrl', ['$scope', '$routeParams', '$http', '$timeout', function($scope, $routeParams, $http, $timeout){
 
+
 // check session status
 	$http.get('/game_on/api/api.php?session-status')
 	.then(function success(response){
@@ -119,7 +120,6 @@ app.controller('reviewCtrl', ['$scope', '$routeParams', '$http', '$timeout', fun
 				$scope.hideCommentDeleteModal = true;
 				$scope.hideModalOverlay = true;
 			}
-			console.log($scope.reviewComments);
 		});
 	};
 

@@ -200,7 +200,9 @@ function latestPlatformReviews($platformID, $numReviews = 5){
 	$reviewQuery = 'SELECT *, DATE(review_time) AS "review_date" FROM reviews
 					INNER JOIN users
 					ON reviews.user_id = users.user_id
-					WHERE platform_id = '.$platformID.'
+					INNER JOIN platforms
+					ON reviews.platform_id = platforms.platform_id
+					WHERE reviews.platform_id = '.$platformID.'
 					ORDER BY review_time DESC
 					LIMIT '.$numReviews;
 	$reviewQuery = query($reviewQuery);

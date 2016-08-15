@@ -41,7 +41,7 @@ $(document).ready(function(){
 	});
 
 	// form cancellation
-	$('.cancel-btn, .exit-btn').on('click', function(){
+	$('.cancel-register').on('click', function(){
 		var imgError = $('#register-img-error');
 		imgError.css('display', 'none');
 		imgError.text('');

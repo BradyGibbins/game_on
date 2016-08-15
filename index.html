@@ -26,7 +26,7 @@
 				
 				<!-- main menu for large devices -->
 				<div class="main-menu-lg">
-					<a href="#/">home</a>
+					<a href="#/" data-ng-click="hideUI()">home</a>
 					<a href="" data-ng-click="platformsShowHideLg()">platforms <span class="down-arrow"></span></a>
 					<a href="" data-ng-click="searchShowHideLg()">search</a>
 				</div>
@@ -103,7 +103,7 @@
 				<div id="register-modal" class="register-modal" data-ng-show="!hideRegisterModal">
 					<h3 class="form-header">register</h3><p class="form-success register-success" data-ng-if="registerSuccess">{{ registerSuccess }}</p>
 					<form role="form" id="register-form" class="register-form" enctype="multipart/form-data" data-ng-submit="processReg()">
-						<button class="exit-btn" type="reset" data-ng-click="showHideRegister()">&times;</button>
+						<button class="exit-btn cancel-register" type="reset" data-ng-click="showHideRegister()">&times;</button>
 						<div class="form-group">
 							<label for="register-username">username:</label><p class="form-error" data-ng-if="registerUsernameError">{{ registerUsernameError }}</p>
 							<input id="register-username" type="text" class="register-username form-control" data-ng-model="registerUsername">
@@ -133,7 +133,7 @@
 							<input id="register-img" type="file" name="registerImg" class="register-img form-control">
 						</div>
 
-						<button class="cancel-btn" type="reset" data-ng-click="showHideRegister()">cancel</button>
+						<button class="cancel-btn cancel-register" type="reset" data-ng-click="showHideRegister()">cancel</button>
 						<input type="submit" class="submit-btn register-submit" value="submit" />
 					</form>
 				</div>
@@ -198,6 +198,7 @@
 		<script type="text/javascript" src="app/directives/bgImg.js"></script>
 		<script type="text/javascript" src="app/directives/reviewSummary.js"></script>
 		<script type="text/javascript" src="app/directives/reviewComment.js"></script>
+		<script type="text/javascript" src="app/directives/slideshow.js"></script>
 
 		<!-- custom jQuery -->
 		<script type="text/javascript" src="/game_on/app/js/js.js"></script>
