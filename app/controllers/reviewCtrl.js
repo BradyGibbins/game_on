@@ -69,7 +69,7 @@ app.controller('reviewCtrl', ['$scope', '$routeParams', '$http', '$timeout', fun
 			$scope.commentError = 'please enter a comment before submitting';
 		}
 		else if($scope.commentInput.length > 500){
-			$scope.commentError = 'comments must be less than 500 characters in length';
+			$scope.commentError = 'comments must contain 500 or fewer characters';
 		}
 		else{
 			$http.post('/game_on/api/api.php', {
@@ -78,11 +78,12 @@ app.controller('reviewCtrl', ['$scope', '$routeParams', '$http', '$timeout', fun
 			})
 			.then(function success(response){
 				$scope.commentInput = '';
+				$scope.commentCount = response.data.length;
 				$scope.reviewComments = response.data;
 				$scope.commentSuccess = 'comment successfully submitted';
 				$timeout(function(){
 					$scope.commentSuccess = false;
-				}, 1000);
+				}, 1300);
 			});
 		}
 	};
@@ -108,6 +109,9 @@ app.controller('reviewCtrl', ['$scope', '$routeParams', '$http', '$timeout', fun
 			var data = response.data;
 			if(data.error === 'no comments'){
 				$scope.commentCount = 0;
+				$scope.reviewComments = [];
+				$scope.hideCommentDeleteModal = true;
+				$scope.hideModalOverlay = true;
 			}
 			else{
 				$scope.commentCount = data.length;
@@ -115,6 +119,7 @@ app.controller('reviewCtrl', ['$scope', '$routeParams', '$http', '$timeout', fun
 				$scope.hideCommentDeleteModal = true;
 				$scope.hideModalOverlay = true;
 			}
+			console.log($scope.reviewComments);
 		});
 	};
 

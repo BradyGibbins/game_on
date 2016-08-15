@@ -146,16 +146,14 @@
 .comment-cont{
 	position: relative;
 	width:100%;
-	height:150px;
+	min-height:150px;
 	background: $go-light;
 	border:1px solid $go-dark;
 	margin-bottom:10px;
-	display: table;
+	display: block;
 	@include borderRadius(5px);
 
 	.comment-details{
-		position: absolute;
-		left:0;
 		width:100%;
 		height:30px;
 		line-height: 30px;
@@ -187,7 +185,7 @@
 	.comment-img{
 		width:70px;
 		height:70px;
-		margin-top:50px;
+		margin-top:10px;
 		margin-left:20px;
 		margin-right: 0;
 		overflow: hidden;
@@ -202,10 +200,9 @@
 	.comment-content{
 		display: inline-block;
 		width:90%;
-		margin-top: 20px;
 		margin-left: 20px;
-		padding:20px;
-		float: left;
+		padding:5px 10px;
+		word-wrap:break-word;
 	}
 }
 

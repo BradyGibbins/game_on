@@ -863,19 +863,17 @@ footer {
 .comment-cont {
   position: relative;
   width: 100%;
-  height: 150px;
+  min-height: 150px;
   background: #efefef;
   border: 1px solid #3d3d3d;
   margin-bottom: 10px;
-  display: table;
+  display: block;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   -o-border-radius: 5px;
   -ms-border-radius: 5px;
   border-radius: 5px; }
   .comment-cont .comment-details {
-    position: absolute;
-    left: 0;
     width: 100%;
     height: 30px;
     line-height: 30px;
@@ -899,7 +897,7 @@ footer {
   .comment-cont .comment-img {
     width: 70px;
     height: 70px;
-    margin-top: 50px;
+    margin-top: 10px;
     margin-left: 20px;
     margin-right: 0;
     overflow: hidden;
@@ -910,10 +908,9 @@ footer {
   .comment-cont .comment-content {
     display: inline-block;
     width: 90%;
-    margin-top: 20px;
     margin-left: 20px;
-    padding: 20px;
-    float: left; }
+    padding: 5px 10px;
+    word-wrap: break-word; }
 
 .comment-delete-modal {
   position: fixed;
