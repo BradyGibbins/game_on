@@ -35,6 +35,12 @@
 	</h3>
 </div>
 
+<div class="row" data-ng-if="!sessionActive">
+	<h3 class="col-xs-4 col-xs-offset-4 login-reminder">
+		please log in to leave a comment
+	</h3>
+</div>
+
 <div class="row" data-ng-if="sessionActive">
 	<div class="col-xs-12">
 		<div class="comment-submit-cont">

@@ -1,7 +1,48 @@
 <div class="row">
-	<div class="col\-xs-12">
-		<slideshow slides="slides"></slideshow>
+	<div class="col-xs-12">
+		<div class="slideshow">
+			<div class="slide" data-ng-show="slide.visible" data-ng-repeat="slide in slides">
+				<img data-ng-src="app/img/reviews/{{slide.img}}" alt="{{ slide.title }}">
+
+			</div>
+			<div class="slide-select" data-ng-mouseover="stopSlideshow()">
+				<a href="" class="slide-selector" data-ng-repeat="slide in slides" data-ng-class="{'selected': $index == currentSlide}" data-ng-click="slideChange($index)"></a>
+			</div>
+			<div class="slideshow-overlay" data-ng-mouseover="stopSlideshow()" data-ng-mouseleave="startSlideshow()"></div>
+		</div>
+	</div>
+	<div class="col-xs-12">
+		<div class="platform-select-label">
+			latest reviews for:
+		</div>
+	</div>
+	<div class="col-xs-12">
+		<a href="" class="select-cont" data-ng-click="hidePlatformSelect = !hidePlatformSelect">
+			<div class="platform-select">
+				{{ currentPlatformName }}
+			</div>
+			<div class="down-arrow-cont">
+				<span class="down-arrow"></span>
+			</div>
+		</a>
+		<div class="platform-select-list" data-ng-show="!hidePlatformSelect">
+			<a href="" class="select-item" data-ng-click="platformSelect(0)">
+				<div>
+					All Platforms
+				</div>
+			</a>
+			<a href="" class="select-item" data-ng-repeat="platform in platforms" data-ng-click="platformSelect(platform.platform_id)">
+				<div>
+					{{ platform.platform_name }}
+				</div>
+			</a>
+		</div>
 	</div>
 </div>
 
-{{ slides }}
+<review-summary data-ng-repeat="review in reviews" review="review"></review-summary>
+
+<!-- page loading overlay -->
+<div class="loading-overlay" data-ng-if="!hideLoadingOverlay">
+	<img src="app/img/loading.png" alt="page is loading">
+</div>

@@ -59,15 +59,6 @@
 			text-decoration: none;
 			color:$go-light;
 			text-align: center;
-
-			.down-arrow{
-				width:10px;
-				height:5px;
-				display:inline-block;
-				background-image: url('../img/down-arrow.png');
-				background-repeat: no-repeat;
-				background-size: contain;
-			}
 		}
 	}
 
@@ -79,8 +70,11 @@
 		margin-top: 60px;
 		margin-left:-255px;
 		position:absolute;
-		z-index:10;
-		@include animation('platformsLg 0.2s');
+		z-index:21;
+		
+		&.ng-enter{
+			@include animation('platformsLg 0.2s');
+		}
 
 		a{
 			display: block;
@@ -104,6 +98,7 @@
 			opacity:0;
 			width:180px;
 			margin-left:-245px;
+			margin-top:50px;
 		}
 		100%{
 			opacity:1;
@@ -120,7 +115,10 @@
 		margin-top:60px;
 		margin-left:250px;
 		z-index: 10;
-		@include animation('searchLg 0.3s');
+		
+		&.ng-enter{
+			@include animation('searchLg 0.3s');
+		}
 
 		.search-lg{
 			display:inline-block;
@@ -147,8 +145,14 @@
 	}
 
 	@include keyframes(searchLg){
-		0%{opacity:0;}
-		100%{opacity:1}
+		0%{
+			opacity:0;
+			margin-top:50px;
+		}
+		100%{
+			opacity:1;
+			margin-top:60px;
+		}
 	}
 
 	// login and register/profile and log out buttons for large devices
@@ -288,7 +292,10 @@
 		background:$go-light;
 		border:2px solid $go-dark;
 		z-index: 20;
-		@include animation('loginModal 0.3s');
+		
+		&.ng-hide-remove{
+			@include animation('loginModal 0.3s');
+		}
 
 		.login-success{
 			position:absolute;
@@ -358,7 +365,10 @@
 		background:$go-light;
 		border:2px solid $go-dark;
 		z-index: 20;
-		@include animation('registerModal 0.3s');
+
+		&.ng-hide-remove{
+			@include animation('registerModal 0.3s');
+		}
 
 		.register-success{
 			position:absolute;
@@ -410,23 +420,6 @@
 				height:650px;
 				opacity:1;
 			}
-		}
-	}
-
-	.loading-overlay{
-		position:fixed;
-		width:100%;
-		height:100%;
-		background:$go-light;
-		z-index: 9001;
-
-		img{
-			position:fixed;
-			top:0;
-			bottom:0;
-			left:0;
-			right:0;
-			margin:auto;
 		}
 	}
 }

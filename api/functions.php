@@ -169,42 +169,30 @@ function searchResults($search){
 	}
 }
 
-// returns an array of most recent review objects
-// default array length is 5
-function latestReviews($numReviews = 5){
-	$reviewQuery = 'SELECT *, DATE(review_time) AS "review_date" FROM reviews
-					INNER JOIN users
-					ON reviews.user_id = users.user_id
-					ORDER BY review_time DESC
-					LIMIT '.$numReviews;
-	$reviewQuery = query($reviewQuery);
-	$i=0;
-
-	if(!$reviewQuery){
-		return false;
-	}
-	else{
-		$reviewList = array();
-		while($row = mysqli_fetch_assoc($reviewQuery)){
-			$reviewList[$i] = $row;
-			$i++;
-		}
-		return json_encode($reviewList);
-	}
-
-}
 
 // returns an array of most recent review objects for a given platform
 // default array length is 5 
 function latestPlatformReviews($platformID, $numReviews = 5){
-	$reviewQuery = 'SELECT *, DATE(review_time) AS "review_date" FROM reviews
-					INNER JOIN users
-					ON reviews.user_id = users.user_id
-					INNER JOIN platforms
-					ON reviews.platform_id = platforms.platform_id
-					WHERE reviews.platform_id = '.$platformID.'
-					ORDER BY review_time DESC
-					LIMIT '.$numReviews;
+	if($platformID == 0){
+		$reviewQuery = 'SELECT *, DATE(review_time) AS "review_date" FROM reviews
+						INNER JOIN users
+						ON reviews.user_id = users.user_id
+						INNER JOIN platforms
+						ON reviews.platform_id = platforms.platform_id
+						ORDER BY review_time DESC
+						LIMIT '.$numReviews;
+
+	}
+	else{
+		$reviewQuery = 'SELECT *, DATE(review_time) AS "review_date" FROM reviews
+						INNER JOIN users
+						ON reviews.user_id = users.user_id
+						INNER JOIN platforms
+						ON reviews.platform_id = platforms.platform_id
+						WHERE reviews.platform_id = '.$platformID.'
+						ORDER BY review_time DESC
+						LIMIT '.$numReviews;
+	}
 	$reviewQuery = query($reviewQuery);
 	$i=0;
 

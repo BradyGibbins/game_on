@@ -197,7 +197,10 @@ else{
 
 	// list latest reviews for a platform
 	if(isset($_GET['latest-reviews'])){
-		if(!latestPlatformReviews($_GET['latest-reviews'])){
+		if($_GET['latest-reviews'] == 0){
+			echo latestPlatformReviews(0);
+		}
+		elseif(!latestPlatformReviews($_GET['latest-reviews'])){
 			echo '{"error":"invalid platform id"}';
 		}
 		else{

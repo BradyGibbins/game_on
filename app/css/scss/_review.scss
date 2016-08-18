@@ -78,6 +78,19 @@
 	@include borderRadius(5px);
 }
 
+.login-reminder{
+	background:$go-dark;
+	text-align: center;
+	height:40px;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 1em;
+	color:$go-yellow;
+	line-height: 40px;
+	margin-bottom:20px;
+	padding: 0;
+	@include borderRadius(5px);
+}
+
 .comment-submit-cont{
 	min-height:120px;
 	height:120px;

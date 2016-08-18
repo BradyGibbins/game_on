@@ -1,0 +1,157 @@
+.slideshow{
+	position: relative;
+	width:80%;
+	margin:20px auto;
+	height:350px;
+	background: $go-dark;
+	border:1px solid $go-dark;
+	overflow:hidden;
+
+	.slide{
+		position: absolute;
+		width:100%;
+		height:350px;
+
+		&.ng-hide-remove{
+			@include animation('fadeIn 1s ease');
+		}
+
+		@include keyframes(fadeIn){
+			0%{
+				opacity:0;
+			}
+			100%{
+				opacity:1;
+			}
+		}
+
+		img{
+			position: absolute;
+			width:100%;
+			height:auto;
+		}
+	}
+	.slide-select{
+		position:absolute;
+		bottom:10px;
+		left:0;
+		right:0;
+		margin: auto;
+		width:300px;
+		height:30px;
+		text-align: center;
+		z-index: 10;
+
+		.slide-selector{
+			display: inline-block;
+			width:20px;
+			height:20px;
+			margin:5px 15px;
+			border:2px solid $go-light;
+			@include borderRadius(20px);
+
+			&.selected{
+				width:24px;
+				height:24px;
+				margin:3px 13px;
+				background: $go-light;
+			}
+		}
+	}
+
+	.slideshow-overlay{
+		position:absolute;
+		top:0;
+		left:0;
+		width:100%;
+		height:100%;
+		background: rgb(0,0,0);
+		opacity:0.5;
+	}
+}
+
+.platform-select-label{
+	width:100%;
+	height:30px;
+	text-align: center;
+	line-height: 30px;
+	font-size: 1.2em;
+	font-weight: bold;
+}
+
+.select-cont{
+	position: relative;
+	display: block;
+	width:300px;
+	height:50px;
+	margin:auto;
+	text-decoration: none;
+	background: $go-dark;
+	@include borderRadius(5px);
+
+	&:hover{
+		text-decoration: none;
+	}
+
+	.platform-select{
+		position: absolute;
+		left:0;
+		top:0;
+		width:300px;
+		height:50px;
+		color:$go-yellow;
+		line-height: 50px;
+		text-align:center;
+	}
+
+	.down-arrow-cont{
+		position: absolute;
+		right:5px;
+		top:12px;
+		width:15px;
+		height: 50px;
+	}
+}
+
+.platform-select-list{
+	position: absolute;
+	top:45px;
+	left:0;
+	right:0;
+	width:300px;
+	height: auto;
+	min-height: 30px;
+	margin:auto;
+	z-index: 10;
+
+	&.ng-hide-remove{
+		@include animation('platformSelect 0.3s');
+
+		@include keyframes(platformSelect){
+			0%{
+				opacity:0;
+				top: 35px;
+			}
+			100%{
+				opacity: 1;
+				top:45px; 
+			}
+		}
+	}
+
+	.select-item{
+		display: block;
+		width:300px;
+		height:30px;
+		background: $go-dark;
+		color:$go-yellow;
+		text-decoration: none;
+		text-align: center;
+		line-height: 30px;
+
+		&:hover{
+			background: $go-active;
+			text-decoration: none;
+		}
+	}
+}

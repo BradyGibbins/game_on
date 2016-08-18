@@ -3,6 +3,7 @@ app.directive('reviewSummary', function(){
 		templateUrl:'app/directives/reviewSummary.html',
 		replace:true,
 		scope:{
-			review:'='		}
+			review:'='
+		}
 	};
 });
