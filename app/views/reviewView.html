@@ -10,6 +10,9 @@
 		<div class="review-stats">
 			<div class="img-overlay">
 			</div>
+			<h3 class="review-platform-name">
+				{{ reviewDetails.platform_name }}
+			</h3>
 			<p class="author-name">
 				Author: {{ reviewDetails.user_fname + ' ' + reviewDetails.user_lname }}
 			</p>
@@ -30,13 +33,12 @@
 </div>
 
 <div class="row" data-ng-if="commentCount == 0">
-	<h3 class="col-xs-4 col-xs-offset-4 no-comments">
+	<h3 class="col-xs-4 col-xs-offset-4 notification no-comments">
 		there are no comments for this review
-	</h3>
 </div>
 
 <div class="row" data-ng-if="!sessionActive">
-	<h3 class="col-xs-4 col-xs-offset-4 login-reminder">
+	<h3 class="col-xs-4 col-xs-offset-4 notification login-reminder">
 		please log in to leave a comment
 	</h3>
 </div>

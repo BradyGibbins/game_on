@@ -47,7 +47,10 @@
 	display:inline-block;
 	width:220px;
 	text-align: center;
-	@include animation('errorShake 0.3s');
+	
+	&.ng-enter{
+		@include animation('errorShake 0.3s');
+	}
 }
 
 @include keyframes(errorShake){

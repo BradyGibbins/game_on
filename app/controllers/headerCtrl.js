@@ -1,5 +1,7 @@
 app.controller('headerCtrl', ['$scope', '$http', '$timeout', '$location', function($scope, $http, $timeout, $location){
 
+	// hides unwaneted UI elements on user interaction
+	// with other UI elements
 	$scope.hideUI = function(exception){
 		
 		switch(exception){
@@ -184,6 +186,20 @@ app.controller('headerCtrl', ['$scope', '$http', '$timeout', '$location', functi
 
 
 // DEVICE SIZE INDEPENDENT STUFF
+
+// search functionality
+	$scope.searchVal = '';
+	$scope.searchFunction = function(){
+		if($scope.searchVal.length === 0){
+			return false;
+		}
+		else{
+			$scope.hideUI();
+			$location.path('/search/'+$scope.searchVal);
+			// $scope.searchVal = '';
+		}
+	};
+
 
 // login and registration modals
 	$scope.hideModalOverlay = true;

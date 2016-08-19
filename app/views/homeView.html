@@ -4,11 +4,28 @@
 			<div class="slide" data-ng-show="slide.visible" data-ng-repeat="slide in slides">
 				<img data-ng-src="app/img/reviews/{{slide.img}}" alt="{{ slide.title }}">
 
+				<a href="#/reviews/{{ slide.gameID }}" class="slide-title">
+					<h2>
+						{{ slide.title }}
+					</h2>
+				</a>
+
+				<div class="slide-platform-author">
+					<a href="#/platforms/{{ slide.platformID }}" class="slide-platform">
+						<h3>
+							{{ slide.platformName }}
+						</h3>
+					</a><br />
+					<p class="slide-author">
+						reviewed by: {{ slide.author }}
+					</p>
+				</div>
+
+				<div class="slideshow-overlay" data-ng-mouseover="stopSlideshow()" data-ng-mouseleave="startSlideshow()"></div>
 			</div>
 			<div class="slide-select" data-ng-mouseover="stopSlideshow()">
 				<a href="" class="slide-selector" data-ng-repeat="slide in slides" data-ng-class="{'selected': $index == currentSlide}" data-ng-click="slideChange($index)"></a>
 			</div>
-			<div class="slideshow-overlay" data-ng-mouseover="stopSlideshow()" data-ng-mouseleave="startSlideshow()"></div>
 		</div>
 	</div>
 	<div class="col-xs-12">

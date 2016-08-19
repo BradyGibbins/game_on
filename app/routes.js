@@ -19,5 +19,9 @@ app.config(function($routeProvider){
 	.when('/reviews/:id', {
 		templateUrl:'app/views/reviewView.html',
 		controller:'reviewCtrl'
+	})
+	.when('/search/:q', {
+		templateUrl:'app/views/searchView.html',
+		controller:'searchCtrl'
 	});
 });

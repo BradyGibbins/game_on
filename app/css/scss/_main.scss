@@ -81,12 +81,24 @@ html, body{
 	text-decoration: none;
 	font-family: 'Open Sans', sans-serif;
 	text-align: center;
-	@include transition(background-color 0.5s ease);
+	@include transition(background-color, 0.5s, ease);
 
 	&:hover{
 		text-decoration: none;
 		background:$go-yellow / 1.1;
 	}
+}
+
+.notification{
+	background:$go-dark;
+	text-align: center;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 1em;
+	color:$go-yellow;
+	margin-bottom:20px;
+	padding: 35px 20px;
+	@include borderRadius(5px);
+
 }
 
 .down-arrow{

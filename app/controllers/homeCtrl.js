@@ -70,11 +70,12 @@ app.controller('homeCtrl', ['$scope', '$http', '$interval', function($scope, $ht
 					slide.visible = false;
 				}
 
-				slide.id = data[i].review_id;
+				slide.gameID = data[i].review_id;
 				slide.title = data[i].review_title;
 				slide.img = data[i].review_img;
 				slide.author = data[i].user_fname + ' ' + data[i].user_lname;
-				slide.platform = data[i].platform_name;
+				slide.platformID = data[i].platform_id;
+				slide.platformName = data[i].platform_name;
 
 				slides[i] = slide;
 			}

@@ -28,12 +28,12 @@
 				<div class="main-menu-lg">
 					<a href="#/" data-ng-click="hideUI()">home</a>
 					<a href="" data-ng-click="platformsShowHideLg()">platforms <span class="down-arrow"></span></a>
-					<a href="" data-ng-click="searchShowHideLg()">search</a>
+					<a href="" class="search-reveal-lg" data-ng-click="searchShowHideLg()">search</a>
 				</div>
-				<div class="search-container-lg" data-ng-if="!hideSearchLg">
-					<input type="text" class="search-lg" placeholder="enter your search term" />
-					<a href="" data-ng-click="searchFunctionLg()" class="search-btn-lg">search</a>
-				</div>
+				<form class="search-container-lg" data-ng-show="!hideSearchLg" data-ng-submit="searchFunction()">
+					<input type="text" class="search-lg" data-ng-model="searchVal" placeholder="enter your search term" />
+					<a href="" class="search-btn-lg" data-ng-click="searchFunction()">search</a>
+				</form>
 
 				<div class="platform-list-lg" data-ng-if="!hidePlatformsLg">
 					<a data-ng-repeat="platform in platformList" data-ng-href="#/platforms/{{platform.platform_id}}" data-ng-click="platformsShowHideLg()">{{ platform.platform_name }}</a>
@@ -61,15 +61,15 @@
 				<!-- main menu for small devices -->
 				<div class="main-menu-sm" data-ng-show="!hideMenuSm">
 					<a href="#/" data-ng-click="menuShowHideSm()">home</a>
-					<a href="#" data-ng-click="platformsShowHideSm()">platforms <span class="down-arrow"></span></a>
+					<a href="" data-ng-click="platformsShowHideSm()">platforms <span class="down-arrow"></span></a>
 					<div class="platform-list-sm" data-ng-if="!hidePlatformsSm">
 						<a data-ng-repeat="platform in platformList" data-ng-href="#/platforms/{{platform.platform_id}}" data-ng-click="menuPlatformsShowHideSm()">{{ platform.platform_name }}</a>
 					</div>
-					<a href="#" data-ng-click="searchShowHideSm()">search</a>
-					<div class="search-container-sm" data-ng-if="!hideSearchSm">
-						<input type="text" class="search-sm" placeholder="enter your search term" />
-						<div class="search-btn-sm" data-ng-click="searchFunctionSm()">search</div>
-					</div>
+					<a href="" class="search-reveal-sm" data-ng-click="searchShowHideSm()">search</a>
+					<form class="search-container-sm" data-ng-submit="searchFunction()" data-ng-show="!hideSearchSm">
+						<input type="text" class="search-sm" data-ng-model="searchVal" placeholder="enter your search term" />
+						<div class="search-btn-sm" data-ng-click="searchFunction()">search</div>
+					</form>
 					<div class="login-logout-sm" data-ng-show="!sessionActive">
 						<a href="" id="nav-login-sm" data-ng-click="menuLoginShowHideSm()">login</a>
 						<a href="" id="nav-register-sm" data-ng-click="menuRegisterShowHideSm()">register</a>
@@ -196,6 +196,7 @@
 		<script type="text/javascript" src="app/controllers/platformsCtrl.js"></script>
 		<script type="text/javascript" src="app/controllers/platformCtrl.js"></script>
 		<script type="text/javascript" src="app/controllers/reviewCtrl.js"></script>
+		<script type="text/javascript" src="app/controllers/searchCtrl.js"></script>
 		
 		<!-- directives -->
 		<script type="text/javascript" src="app/directives/platformInfo.js"></script>

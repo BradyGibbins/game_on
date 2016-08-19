@@ -3,6 +3,7 @@
 	height:300px;
 	overflow: hidden;
 	border:1px solid $go-dark;
+	font-family:'Open Sans', sans-serif;
 
 	.img-overlay{
 		position:absolute;
@@ -13,9 +14,20 @@
 		z-index: 2;
 	}
 
+	.review-platform-name{
+		position:absolute;
+		top:10px;
+		left:10px;
+		padding:20px;
+		z-index:3;
+		margin:0;
+		background: $go-dark;
+		color:$go-yellow;
+		font-size: 1em;
+	}
+
 	p{
 		position:absolute;
-		font-family:'Open Sans', sans-serif;
 		font-size: 1.1em;
 		text-shadow:0 0 2px black;
 		color:$go-light;
@@ -63,32 +75,6 @@
 		font-family: 'Open Sans',sans-serif;
 		font-size:1.1em;
 	}
-}
-
-.no-comments{
-	background:$go-dark;
-	text-align: center;
-	height:40px;
-	font-family: 'Open Sans', sans-serif;
-	font-size: 1em;
-	color:$go-yellow;
-	line-height: 40px;
-	margin-bottom:20px;
-	padding: 0;
-	@include borderRadius(5px);
-}
-
-.login-reminder{
-	background:$go-dark;
-	text-align: center;
-	height:40px;
-	font-family: 'Open Sans', sans-serif;
-	font-size: 1em;
-	color:$go-yellow;
-	line-height: 40px;
-	margin-bottom:20px;
-	padding: 0;
-	@include borderRadius(5px);
 }
 
 .comment-submit-cont{
@@ -231,7 +217,10 @@
 	background: $go-light;
 	border:1px solid $go-dark;
 	z-index: 20;
-	@include animation('commentDeleteModal 0.3s');
+	
+	&.ng-enter{
+		@include animation('commentDeleteModal 0.3s');
+	}
 
 	h3{
 		height:30px;

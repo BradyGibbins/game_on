@@ -1,0 +1,15 @@
+<div class="row">
+	<div class="col-xs-12">
+		<div class="notification search-result-msg" data-ng-if="resultCount == 0">
+			there are no results for "{{ q }}"
+		</div>
+		<div class="notification search-result-msg" data-ng-if="resultCount == 1">
+			there is one result for "{{ q }}"
+		</div>
+		<div class="notification search-result-msg" data-ng-if="resultCount > 1">
+			there are {{ resultCount }} results for "{{ q }}"
+		</div>
+	</div>
+</div>
+
+<review-summary data-ng-repeat="result in searchResults" review="result"></review-summary>

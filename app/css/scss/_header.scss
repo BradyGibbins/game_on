@@ -114,9 +114,9 @@
 		background: $go-dark;
 		margin-top:60px;
 		margin-left:250px;
-		z-index: 10;
+		z-index: 16;
 		
-		&.ng-enter{
+		&.ng-hide-remove{
 			@include animation('searchLg 0.3s');
 		}
 

@@ -54,11 +54,22 @@ $(document).ready(function(){
 	});
 
 	// move focus to form inputs when forms are shown
+	// login
 	$('#nav-login-lg, #nav-login-sm').on('click', function(){
 		$('#login-username').focus();
 	});
 
+	// registration
 	$('#nav-register-lg, #nav-register-sm').on('click', function(){
 		$('#register-username').focus();
+	});
+
+	// search
+	$('.search-reveal-lg').on('click', function(){
+		$('.search-lg').focus();
+	});
+
+	$('.search-reveal-sm').on('click', function(){
+		$('.search-sm').focus();
 	});
 });

@@ -6,6 +6,8 @@
 	background: $go-dark;
 	border:1px solid $go-dark;
 	overflow:hidden;
+	box-shadow: 0 0 5px black;
+	font-family: 'Open Sans', sans-serif;
 
 	.slide{
 		position: absolute;
@@ -25,10 +27,82 @@
 			}
 		}
 
+		.slide-title{
+			position: relative;
+			display: block;
+			background: $go-dark;
+			z-index: 15;
+			text-decoration: none;
+			width:100%;
+			color:$go-light;
+			padding:5px 10px 10px;
+			border-bottom: 3px solid $go-yellow;
+			@include boxShadow(0, 0, 5px, $go-yellow);
+
+			&:hover{
+				text-decoration: none;
+			}
+
+			h2{
+				margin:0;
+			}
+		}
+
+		.slide-platform-author{
+			position: relative;
+			display:block;
+			height:280px;
+			margin-top:10px;
+			margin-left:5px;
+			z-index: 15;
+
+			.slide-platform,
+			.slide-author{
+				display:inline-block;
+				background: $go-dark;
+			}
+
+			.slide-platform{
+				text-decoration: none;
+
+				h3{
+					font-size: 1em;
+					margin:0;
+					color:$go-yellow;
+					padding:20px;
+					@include transition(all, 0.5s, ease);
+
+					&:hover{
+						text-shadow:0 0 5px $go-yellow;
+						text-decoration: none;
+					}
+				}
+			}
+
+			.slide-author{
+				color:$go-light;
+				font-size:0.8em;
+				padding:5px;
+				margin-top:200px;
+			}
+		}
+
+
 		img{
 			position: absolute;
 			width:100%;
 			height:auto;
+		}
+
+		.slideshow-overlay{
+			position:absolute;
+			top:0;
+			left:0;
+			width:100%;
+			height:100%;
+			background: rgb(0,0,0);
+			opacity:0.5;
+			z-index: 14;
 		}
 	}
 	.slide-select{
@@ -40,7 +114,7 @@
 		width:300px;
 		height:30px;
 		text-align: center;
-		z-index: 10;
+		z-index: 15;
 
 		.slide-selector{
 			display: inline-block;
@@ -59,15 +133,6 @@
 		}
 	}
 
-	.slideshow-overlay{
-		position:absolute;
-		top:0;
-		left:0;
-		width:100%;
-		height:100%;
-		background: rgb(0,0,0);
-		opacity:0.5;
-	}
 }
 
 .platform-select-label{
