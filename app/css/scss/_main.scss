@@ -95,6 +95,10 @@ html, body{
 	padding: 35px 20px;
 	@include borderRadius(5px);
 
+	&.invalid-id{
+		margin-top:20px;
+	}
+
 }
 
 .down-arrow{

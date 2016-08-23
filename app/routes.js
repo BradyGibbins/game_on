@@ -23,5 +23,9 @@ app.config(function($routeProvider){
 	.when('/search/:q', {
 		templateUrl:'app/views/searchView.html',
 		controller:'searchCtrl'
+	})
+	.otherwise({
+		templateUrl:'app/views/homeView.html',
+		controller:'homeCtrl'
 	});
 });

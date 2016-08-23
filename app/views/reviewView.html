@@ -1,76 +1,81 @@
-<div class="row">
-	<div class="col-xs-12">
-		<div class="title-cont">
-			<h1 class="page-title">{{ reviewDetails.review_title }}</h1>
-		</div>
-		<a href="#/platforms/{{ reviewDetails.platform_id }}" class="back-btn">back to {{ reviewDetails.platform_name }}</a>
-	</div>
+<div class="notification invalid-id" data-ng-if="invalidReviewID">
+	"{{ reviewID }}" is an invalid review ID.
 </div>
-
-<div class="row">
-	<div class="col-xs-12">
-		<div class="review-stats">
-			<div class="img-overlay">
+<div data-ng-if="!invalidReviewID">
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="title-cont">
+				<h1 class="page-title">{{ reviewDetails.review_title }}</h1>
 			</div>
-			<h3 class="review-platform-name">
-				{{ reviewDetails.platform_name }}
-			</h3>
-			<p class="author-name">
-				Author: {{ reviewDetails.user_fname + ' ' + reviewDetails.user_lname }}
-			</p>
-			<p class="review-date">
-				Published: {{ reviewDetails.review_date | date : 'MMMM d y' }}
-			</p>
-			<img ng-src="app/img/scores/{{ reviewDetails.review_rating }}.png" alt="review score" class="review-score" />
-			<img ng-src="app/img/reviews/{{ reviewDetails.review_img }}" alt="image of {{ reviewDetails.review_title }}" class="review-main-img" />
+			<a href="#/platforms/{{ reviewDetails.platform_id }}" class="back-btn">back to {{ reviewDetails.platform_name }}</a>
 		</div>
 	</div>
-</div>
 
-<div class="row">
-	<div class="col-xs-12">
-		<div class="review-content">
-		</div>
-	</div>
-</div>
-
-<div class="row" data-ng-if="commentCount == 0">
-	<h3 class="col-xs-4 col-xs-offset-4 notification no-comments">
-		there are no comments for this review
-</div>
-
-<div class="row" data-ng-if="!sessionActive">
-	<h3 class="col-xs-4 col-xs-offset-4 notification login-reminder">
-		please log in to leave a comment
-	</h3>
-</div>
-
-<div class="row" data-ng-if="sessionActive">
-	<div class="col-xs-12">
-		<div class="comment-submit-cont">
-			<div class="comment-user-img">
-				<img ng-src="app/img/users/{{userInfo.userImg}}" alt="{{userInfo.username}}'s user image" />
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="review-stats">
+				<div class="img-overlay">
+				</div>
+				<h3 class="review-platform-name">
+					{{ reviewDetails.platform_name }}
+				</h3>
+				<p class="author-name">
+					Author: {{ reviewDetails.user_fname + ' ' + reviewDetails.user_lname }}
+				</p>
+				<p class="review-date">
+					Published: {{ reviewDetails.review_date | date : 'MMMM d y' }}
+				</p>
+				<img ng-src="app/img/scores/{{ reviewDetails.review_rating }}.png" alt="review score" class="review-score" />
+				<img ng-src="app/img/reviews/{{ reviewDetails.review_img }}" alt="image of {{ reviewDetails.review_title }}" class="review-main-img" />
 			</div>
-			<form class="comment-form" data-ng-submit="submitComment()">
-				<p class="form-error comment-error" data-ng-if="commentError">{{ commentError }}</p>
-				<p class="form-success comment-success" data-ng-if="commentSuccess">{{ commentSuccess }}</p>
-				<textarea class="comment-text form-control" placeholder="comment as {{ userInfo.username }}..." data-ng-model="$parent.commentInput"></textarea>
-				<input type="submit" class="submit-btn" value="submit">
-				<input type="reset" class="cancel-btn" data-ng-click="$parent.commentInput = ''" value="clear">
-			</form>
 		</div>
 	</div>
-</div>
 
-<review-comment data-ng-repeat="comment in reviewComments" comment="comment" current-user="userInfo" data-ng-if="commentCount > 0"></review-comment>
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="review-content">
+			</div>
+		</div>
+	</div>
 
-<!-- comment deletion confirmation -->
-<div class="comment-delete-modal" data-ng-if="!hideCommentDeleteModal">
-	<h3 class="alert-header">confirm comment deletion</h3>
-	<button class="submit-btn" data-ng-click="hideCommentDelete()">cancel</button>
-	<button class="cancel-btn" data-ng-click="deleteComment(commentToDelete, commentParent)">delete</button>
-</div>
+	<div class="row" data-ng-if="commentCount == 0">
+		<h3 class="col-xs-4 col-xs-offset-4 notification no-comments">
+			there are no comments for this review
+	</div>
 
-<!-- modal overlay -->
-<div class="modal-overlay" data-ng-if="!hideModalOverlay">
+	<div class="row" data-ng-if="!sessionActive">
+		<h3 class="col-xs-4 col-xs-offset-4 notification login-reminder">
+			please log in to leave a comment
+		</h3>
+	</div>
+
+	<div class="row" data-ng-if="sessionActive">
+		<div class="col-xs-12">
+			<div class="comment-submit-cont">
+				<div class="comment-user-img">
+					<img ng-src="app/img/users/{{userInfo.userImg}}" alt="{{userInfo.username}}'s user image" />
+				</div>
+				<form class="comment-form" data-ng-submit="submitComment()">
+					<p class="form-error comment-error" data-ng-if="commentError">{{ commentError }}</p>
+					<p class="form-success comment-success" data-ng-if="commentSuccess">{{ commentSuccess }}</p>
+					<textarea class="comment-text form-control" placeholder="comment as {{ userInfo.username }}..." data-ng-model="$parent.commentInput"></textarea>
+					<input type="submit" class="submit-btn" value="submit">
+					<input type="reset" class="cancel-btn" data-ng-click="$parent.commentInput = ''" value="clear">
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<review-comment data-ng-repeat="comment in reviewComments" comment="comment" current-user="userInfo" data-ng-if="commentCount > 0"></review-comment>
+
+	<!-- comment deletion confirmation -->
+	<div class="comment-delete-modal" data-ng-if="!hideCommentDeleteModal">
+		<h3 class="alert-header">confirm comment deletion</h3>
+		<button class="submit-btn" data-ng-click="hideCommentDelete()">cancel</button>
+		<button class="cancel-btn" data-ng-click="deleteComment(commentToDelete, commentParent)">delete</button>
+	</div>
+
+	<!-- comment deletion modal overlay -->
+	<div class="modal-overlay" data-ng-if="!hideModalOverlay">
+	</div>
 </div>

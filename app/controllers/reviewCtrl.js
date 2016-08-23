@@ -29,22 +29,29 @@ app.controller('reviewCtrl', ['$scope', '$routeParams', '$http', '$timeout', fun
 	});
 
 	$scope.reviewID = $routeParams.id;
+	$scope.invalidReviewID = false;
 
 	// retrieve review information
 	$http.get('/game_on/api/api.php?review-id='+$scope.reviewID)
 	.then(function success(response){
-		$scope.reviewDetails = response.data;
+		$scope.invalidReviewID = false;
+		if(response.data.error === 'invalid review id'){
+			$scope.invalidReviewID = true;
+		}
+		else{
+			$scope.reviewDetails = response.data;
 
-		var reviewContent = $scope.reviewDetails.review_content;
-		var reviewParas = '';
-		// add <p> tags around each paragraph of review text
-		reviewContent.forEach(function(cv, i){
-			cv = "<p>"+cv+"</p>";
-			reviewParas += cv;
-		});
+			var reviewContent = $scope.reviewDetails.review_content;
+			var reviewParas = '';
+			// add <p> tags around each paragraph of review text
+			reviewContent.forEach(function(cv, i){
+				cv = "<p>"+cv+"</p>";
+				reviewParas += cv;
+			});
 
-		// add review text to the view
-		$('.review-content').html(reviewParas);
+			// add review text to the view
+			$('.review-content').html(reviewParas);
+		}
 	});
 
 

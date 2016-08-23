@@ -98,6 +98,8 @@ html, body {
   -o-border-radius: 5px;
   -ms-border-radius: 5px;
   border-radius: 5px; }
+  .notification.invalid-id {
+    margin-top: 20px; }
 
 .down-arrow {
   width: 10px;
