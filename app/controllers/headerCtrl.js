@@ -10,6 +10,7 @@ app.controller('headerCtrl', ['$scope', '$http', '$timeout', '$location', functi
 				$scope.hidePlatformsSm = true;
 				$scope.hideSearchSm = true;
 				$scope.hideMenuSm = true;
+				$scope.menuSmActive = '';
 				break;
 			
 			case 'hideSearchLg':
@@ -17,6 +18,7 @@ app.controller('headerCtrl', ['$scope', '$http', '$timeout', '$location', functi
 				$scope.hidePlatformsSm = true;
 				$scope.hideSearchSm = true;
 				$scope.hideMenuSm = true;
+				$scope.menuSmActive = '';
 				break;
 			
 			case 'hidePlatformsSm':
@@ -44,6 +46,7 @@ app.controller('headerCtrl', ['$scope', '$http', '$timeout', '$location', functi
 				$scope.hidePlatformsSm = true;
 				$scope.hideSearchSm = true;
 				$scope.hideMenuSm = true;
+				$scope.menuSmActive = '';
 		}
 	};
 
@@ -258,7 +261,10 @@ app.controller('headerCtrl', ['$scope', '$http', '$timeout', '$location', functi
 	$scope.loginUsername = '';
 	$scope.loginPassword = '';
 
+	$scope.loginProcessing = false;
+
 	$scope.processLogin = function(){
+		$scope.loginProcessing = true;
 
 		$scope.loginUsernameError = false;
 		$scope.loginPasswordError = false;
@@ -288,6 +294,7 @@ app.controller('headerCtrl', ['$scope', '$http', '$timeout', '$location', functi
 
 				if(data.error){
 					$scope.submitError = data.error;
+					$scope.loginProcessing = false;
 					return false;
 				}
 				else{
@@ -302,6 +309,7 @@ app.controller('headerCtrl', ['$scope', '$http', '$timeout', '$location', functi
 
 					$timeout(function(){
 						$scope.showHideLogin();
+						$scope.loginProcessing = false;
 					}, 1000);
 				}
 			});
@@ -332,9 +340,12 @@ app.controller('headerCtrl', ['$scope', '$http', '$timeout', '$location', functi
 	$scope.registerFName = '';
 	$scope.registerLName = '';
 
+	$scope.registrationProcessing = false;
+
 	$scope.processReg = function(){
 
 		// set all error and success conditions to false before validation
+		$scope.registrationProcessing = true;
 		$scope.registerUsernameError = false;
 		$scope.registerPassError = false;
 		$scope.registerPassConfError = false;
@@ -363,10 +374,12 @@ app.controller('headerCtrl', ['$scope', '$http', '$timeout', '$location', functi
 			var userExists = response.data;
 			if(userExists === 'true'){
 				$scope.registerUsernameError = 'username already exists';
+				$scope.registrationProcessing = false;
 				return false;
 			}
 			else if(self.registerUsername.length < 4 || self.registerUsername.length > 10){
 				$scope.registerUsernameError = 'must be between 4 and 10 characters';
+				$scope.registrationProcessing = false;
 				return false;
 			}
 
@@ -374,10 +387,12 @@ app.controller('headerCtrl', ['$scope', '$http', '$timeout', '$location', functi
 			// registration password validation
 			else if(self.registerPass.length < 7){
 				$scope.registerPassError = 'must contain at least 7 characters';
+				$scope.registrationProcessing = false;
 				return false;
 			}
 			else if(!hasUppercase || !hasLowercase || !hasNumber){
 				$scope.registerPassError = 'must contain 1 lowercase letter, 1 uppercase letter and 1 number';
+				$scope.registrationProcessing = false;
 				return false;
 			}
 
@@ -385,6 +400,7 @@ app.controller('headerCtrl', ['$scope', '$http', '$timeout', '$location', functi
 			// registration password confirmation validation
 			else if(self.registerPass !== self.registerPassConf){
 				$scope.registerPassConfError = 'must match password';
+				$scope.registrationProcessing = false;
 				return false;
 			}
 
@@ -392,6 +408,7 @@ app.controller('headerCtrl', ['$scope', '$http', '$timeout', '$location', functi
 			// registration email address validation
 			else if(!validEmail){
 				$scope.registerEmailError = 'invalid email address';
+				$scope.registrationProcessing = false;
 				return false;
 			}
 
@@ -399,6 +416,7 @@ app.controller('headerCtrl', ['$scope', '$http', '$timeout', '$location', functi
 			// registration first name validation
 			else if(self.registerFName === ''){
 				$scope.registerFNameError = 'please enter a first name';
+				$scope.registrationProcessing = false;
 				return false;
 			}
 
@@ -406,6 +424,7 @@ app.controller('headerCtrl', ['$scope', '$http', '$timeout', '$location', functi
 			// registration first name validation
 			else if(self.registerLName === ''){
 				$scope.registerLNameError = 'please enter a last name';
+				$scope.registrationProcessing = false;
 				return false;
 			}
 
@@ -428,6 +447,7 @@ app.controller('headerCtrl', ['$scope', '$http', '$timeout', '$location', functi
 					$timeout(function(){
 						$scope.showHideRegister();
 						$scope.registerSuccess = false;
+						$scope.registrationProcessing = false;
 					}, 1200);
 				});
 			}

@@ -161,7 +161,8 @@
 		width:200px;
 		height: 60px;
 
-		a{
+		a,
+		.logged-in-username{
 			display: inline-block;
 			width:100px;
 			height:60px;
@@ -279,6 +280,17 @@
 				background-size: contain;
 			}
 		}
+
+		.logged-in-username{
+			display:inline-block;
+			width:100%;
+			height:60px;
+			text-align: center;
+			line-height: 60px;
+			color:$go-light;
+			background: $go-dark;
+			text-decoration: none;
+		}
 	}
 
 	.login-modal{
@@ -286,8 +298,8 @@
 		top:80px;
 		left:0;
 		right:0;
-		width:400px; //earmarked
-		height:280px; //earmarked
+		width:400px;
+		height:280px;
 		margin:auto;
 		background:$go-light;
 		border:2px solid $go-dark;
@@ -347,8 +359,8 @@
 				opacity:0;
 			}
 			100%{
-				width:400px; //earmarked
-				height:280px; //earmarked
+				width:400px;
+				height:280px;
 				opacity:1;
 			}
 		}
@@ -360,8 +372,8 @@
 		left:0;
 		right:0;
 		margin:auto;
-		width:400px; //earmarked
-		height:650px; //earmarked
+		width:400px;
+		height:650px;
 		background:$go-light;
 		border:2px solid $go-dark;
 		z-index: 20;
@@ -424,3 +436,14 @@
 	}
 }
 
+.modal-processing{
+	position:absolute;
+	left:0;
+	top:0;
+	width:100%;
+	height:100%;
+	background: $go-light;
+	opacity:0.6;
+	z-index: 21;
+	display: block;
+}

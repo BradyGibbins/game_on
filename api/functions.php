@@ -1,6 +1,6 @@
 <?php
 
-$con = mysqli_connect('localhost', 'root', '', 'game_on') or false;
+$con = mysqli_connect('localhost', 'root', '', 'game_on') or die('could not establish database connection');
 
 // escapes special characters from user inputs
 function sanitise($input){
@@ -30,6 +30,7 @@ function query($sql){
 // checks database to determine existence of a username
 function userExists($username){
 	sanitise($username);
+	
 	$userExists = query('SELECT * FROM users WHERE username = "'.$username.'"');
 	if($userExists){
 		return true;
@@ -91,6 +92,8 @@ function userRegistration($userInfo){
 
 // retrieves a user's information from the database
 function userInfo($userID){
+	$userID = sanitise($userID);
+	
 	$userInfo = 'SELECT * FROM users
 				 WHERE user_id = '.$userID;
 	$userInfo = query($userInfo);
@@ -115,6 +118,8 @@ function sessionActive(){
 
 // return details for a given platform
 function platformDetails($platformID){
+	$platformID = sanitise($platformID);
+	
 	$platformInfo = 'SELECT * FROM platforms
 					 WHERE platform_id = '.$platformID;
 	$platformInfo = query($platformInfo);
@@ -148,6 +153,8 @@ function listPlatforms(){
 
 // lists all reviews containing a searched string
 function searchResults($search){
+	$search = sanitise($search);
+	
 	$searchQuery = 'SELECT *, DATE(review_time) AS "review_date" FROM reviews
 					INNER JOIN users
 					ON reviews.user_id = users.user_id
@@ -173,6 +180,9 @@ function searchResults($search){
 // returns an array of most recent review objects for a given platform
 // default array length is 5 
 function latestPlatformReviews($platformID, $numReviews = 5){
+	$platformID = sanitise($platformID);
+	$numReviews = sanitise($numReviews);
+	
 	if($platformID == 0){
 		$reviewQuery = 'SELECT *, DATE(review_time) AS "review_date" FROM reviews
 						INNER JOIN users
@@ -211,6 +221,8 @@ function latestPlatformReviews($platformID, $numReviews = 5){
 
 // returns an array of all review objects for a given platform
 function allPlatformReviews($platformID){
+	$platformID = sanitise($platformID);
+	
 	$reviewQuery = 'SELECT *, DATE(review_time) AS "review_date" FROM reviews
 					INNER JOIN users
 					ON reviews.user_id = users.user_id
@@ -235,6 +247,8 @@ function allPlatformReviews($platformID){
 
 // retrieve a review's information from the database
 function reviewDetails($reviewID){
+	$reviewID = sanitise($reviewID);
+	
 	$reviewDetails = 'SELECT *, DATE(review_time) AS "review_date" FROM reviews
 					  INNER JOIN platforms
 					  ON reviews.platform_id = platforms.platform_id
@@ -276,6 +290,8 @@ function reviewDetails($reviewID){
 
 // return array of comment objects for a given review
 function reviewComments($reviewID){
+	$reviewID = sanitise($reviewID);
+	
 	$reviewComments = 'SELECT *, DATE(comment_time) AS "comment_time" FROM comments
 					   INNER JOIN users
 					   ON comments.user_id = users.user_id
@@ -301,6 +317,8 @@ function reviewComments($reviewID){
 
 // delete specified comment
 function commentDelete($commentID){
+	$commentID = sanitise($commentID);
+	
 	$deleteComment = 'DELETE FROM comments
 					  WHERE comment_id = '.$commentID;
 
@@ -309,6 +327,10 @@ function commentDelete($commentID){
 
 // submit comment
 function commentSubmit($userID, $reviewID, $comment){
+	$userID = sanitise($userID);
+	$reviewID = sanitise($reviewID);
+	$comment = sanitise($comment);
+	
 	$submitComment = 'INSERT INTO comments (user_id, review_id, comment_content)
 					  VALUES('.$userID.', '.$reviewID.', "'.$comment.'")';
 	$submitComment = query($submitComment);

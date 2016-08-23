@@ -47,7 +47,7 @@
 
 				<div class="login-logout-lg" data-ng-show="sessionActive">
 					<!-- profile info/log out menu for large devices -->
-					<a href="#/userprofile">{{ userInfo.username }}</a>
+					<div class="logged-in-username">{{ userInfo.username }}</div>
 					<a href="" data-ng-click="logout()">log out</a>
 				</div>
 
@@ -75,13 +75,14 @@
 						<a href="" id="nav-register-sm" data-ng-click="menuRegisterShowHideSm()">register</a>
 					</div>
 					<div class="login-logout-sm" data-ng-show="sessionActive">
-						<a href="#/userprofile">{{ userInfo.username }}</a>
+						<div class="logged-in-username">logged in as {{ userInfo.username }}</div>
 						<a href="" data-ng-click="logout()">log out</a>
 					</div>
 				</div>
 
 				<!-- login modal -->
 				<div id="login-modal" class="login-modal" data-ng-show="!hideLoginModal">
+					<div class="modal-processing" data-ng-show="loginProcessing"></div>
 					<h3 class="form-header">login</h3><p class="form-error login-error" data-ng-if="submitError">{{ submitError }}</p><p class="form-success login-success" data-ng-if="loginSuccess">{{ loginSuccess }}</p>
 					<form role="form" class="login-form" data-ng-submit="processLogin()">
 						<button class="exit-btn" type="reset" data-ng-click="showHideLogin()">&times;</button>
@@ -101,6 +102,7 @@
 
 				<!-- registration modal -->
 				<div id="register-modal" class="register-modal" data-ng-show="!hideRegisterModal">
+					<div class="modal-processing" data-ng-show="registrationProcessing"></div>
 					<h3 class="form-header">register</h3><p class="form-success register-success" data-ng-if="registerSuccess">{{ registerSuccess }}</p>
 					<form role="form" id="register-form" class="register-form" enctype="multipart/form-data" data-ng-submit="processReg()">
 						<button class="exit-btn cancel-register" type="reset" data-ng-click="showHideRegister()">&times;</button>

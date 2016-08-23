@@ -1,5 +1,6 @@
 html, body{
 	width:100%;
+	min-width: 500px;
 	height:100%;
 	background-image: $go-cubes;
 	background-repeat: repeat;
@@ -38,9 +39,7 @@ html, body{
 	color:$go-light;
 	background: $go-dark;
 	border-bottom:5px solid $go-yellow;
-	margin-top: 20px;
-	margin-bottom:20px;
-	display: inline-block; // small devices only?
+	display: inline-block;
 	padding:10px;
 	@include borderRadius(5px);
 	overflow:hidden;
@@ -69,9 +68,6 @@ html, body{
 }
 
 .back-btn{
-	display:inline-block;
-	float:right;
-	margin-top: 30px;
 	@include borderRadius(5px);
 	overflow:hidden;
 	padding:10px;
@@ -123,7 +119,6 @@ html, body{
 		border-left: 1px solid $go-dark;
 		display:block;
 		float:left;
-		@include borderRadius(5px 0 0 5px);
 		overflow:hidden;
 
 		h2{
@@ -133,11 +128,11 @@ html, body{
 			padding-top:5px;
 			padding-left:5px;
 			text-align: left;
-			vertical-align: top;		
 			margin:0;
 			color:$go-light;
 			text-shadow:0 0 2px black;
 			background: rgba(0,0,0,0.4);
+			font-size: 1.4em;
 		}
 
 		p{
@@ -155,13 +150,9 @@ html, body{
 	}
 
 	.review-rating{
-		width:120px;
-		height:120px;
 		position:absolute;
 		top:0;
 		bottom:0;
-		left:0;
-		right:0;
 		margin:auto;
 	}
 
@@ -170,7 +161,6 @@ html, body{
 		height:150px;
 		background: $go-dark;
 		float:right;
-		@include borderRadius(0 5px 5px 0);
 		overflow:hidden;
 
 		.review-clip{
